@@ -13,6 +13,29 @@
         працівником, пенсіонером).</p>
 
     <script>
+        const ageUser = parseInt(prompt(`введите возраст`));
+
+        let result;
+
+        if (ageUser <= 6 && ageUser > 0) {
+            result = 'детсадовец'
+        } else {
+            if (ageUser > 6 && ageUser <= 17) {
+                result = 'школьник'
+            } else {
+                if (ageUser >= 17 && ageUser < 22) {
+                    result = 'студент'
+                } else {
+                    if (ageUser >= 22 && ageUser <= 60) {
+                        result = 'рабочий'
+                    } else {
+                        result = 'пенсионер'
+                    }
+                }
+            }
+        }
+
+        document.write(`ответ: ${result}`)
     </script>
 </body>
 

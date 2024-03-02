@@ -12,6 +12,36 @@
     <p>З клавіатури вводиться номер місяця. Вивести до якої пори він відноситься</p>
 
     <script>
+        const numberOfMonth = parseInt(prompt(`Введите номер месяца`, 12));
+
+        let result;
+
+        switch (numberOfMonth) {
+            case 1:
+            case 2:
+            case 12:
+                result = "Зима"
+                break;
+            case 3:
+            case 4:
+            case 5:
+                result = "Весна"
+                break;
+            case 6:
+            case 7:
+            case 8:
+                result = "Лето"
+                break;
+            case 9:
+            case 10:
+            case 11:
+            result = "Осень"
+                break;
+
+            default:result = "Некоректные введенные данные"
+                break;
+        }
+        document.write(result)
     </script>
 </body>
 

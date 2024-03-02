@@ -9,9 +9,33 @@
 
 <body>
     <h1>Задача 3</h1>
-    <p>Випадковим чином генерується число від 1 до 5. Спробуйте вгадати число за 2 спроби..</p>
+    <p>Випадковим чином генерується число від 1 до 5. Спробуйте вгадати число за 2 спроби.</p>
 
     <script>
+        // генерируем случайное число от 1 до 5.
+        const min = 1,
+            max = 5;
+        let rundom = min + Math.floor(Math.random() * (max - min + 1));
+        // получаем число пользователя
+        let userNumber = parseInt(prompt(`введите число от 1 до 5`));
+        let secondTry;
+        let result;
+
+        // условие
+
+        if (userNumber == rundom) {
+            result = "вы угaдали с первой попытки"
+        } else {
+            secondTry = parseInt(prompt(`попобуйте еще раз`));
+            (secondTry == rundom) ? result = "вы угaдали со второй попытки": result = "у вас больше нет попыток"
+        }
+
+        // выводим результат
+        document.write(`
+        сгенерированное число ${rundom} <br>
+        ваше число ${userNumber} , ${secondTry }<br>
+        результат  ${result}
+        `)
     </script>
 </body>
 

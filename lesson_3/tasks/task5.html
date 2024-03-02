@@ -13,6 +13,25 @@
         автомобіль). Вивести на екран назву транспортного засобу, яким він може керувати.</p>
 
     <script>
+        let vehicleCategory = prompt(`введите водительскую категорию`, `A`)
+        let result;
+
+        switch (vehicleCategory) {
+            case "A":
+                result = "мотоцикл"
+                break;
+            case "B":
+                result = "легковой автомобиль"
+                break;
+            case "C":
+                result = "грузовой автомобиль"
+                break;
+
+            default:
+                alert(`введите коректно водительскую категорию`);
+                break;
+        }
+        document.write(`Ваше транспортное средство : ${result}`)
     </script>
 </body>
 
