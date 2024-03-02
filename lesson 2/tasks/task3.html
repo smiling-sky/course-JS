@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача 3</title>
+</head>
+
+<body>
+    <h1>Задача 3</h1>
+    <p>Дано вартість одиниці товару і кількість. Знайти загальну вартість та ПДВ (5% від загальної
+        вартості).</p>
+
+    <script>
+        // количество товара
+        let productNumber = parseFloat(prompt(`введите количество товара`));
+
+        // стоимость еденицы товара
+        let productPrice = parseFloat(prompt(`введите стоимость еденицы товара  в фунтах`));
+
+        // ндс
+        const nds = 5;
+
+        // общая стоимость
+        let productSummaPrice = productNumber * productPrice;
+
+        document.write(
+            `общая стомость товара равна - ${productSummaPrice} ф, <br> НДС = ${productSummaPrice * nds / 100} `)
+    </script>
+</body>
+
+</html>

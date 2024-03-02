@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача 1</title>
+</head>
+
+<body>
+    <h1>Задача 1.</h1>
+    <p>Знайти суму, добуток та частку двох дійсних чисел. Результат вивести у формі таблиці</p>
+
+    <script>
+        // получить число А
+        let numberA = parseFloat(prompt(`введите число A`));
+
+        // получить число B
+        let numberB = parseFloat(prompt(`введите число B`));
+
+        // найти сумму чисел
+        let summaNumbers = numberA + numberB;
+
+
+        // найти произведение чисел
+        let multiplyNumders = numberA * numberB;
+        // найти частное двух чисел
+        let divideNumbrers = numberA / numberB;
+
+        // написать и вывести результат у форме таблицы
+        document.write(
+            `
+            Число А = ${numberA} <br>
+            Число В = ${numberB} <br>
+            <br>
+
+            <table border="2px">
+                <thead>
+                    <tr>
+                        <th>Действие</th>
+                        <th>Результат</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Сумма А и В;</th>
+                        <th>${summaNumbers}</th>
+                    </tr>
+                    <tr>
+                        <th>Произведение А и В;</th>
+                        <th>${multiplyNumders}</th>
+                    </tr>
+                    <tr>
+                        <th>Деление А и В;</th>
+                        <th>${divideNumbrers}</th>
+                    </tr>
+                </tbody>
+            </table>
+            `
+        )
+    </script>
+</body>
+
+</html>
