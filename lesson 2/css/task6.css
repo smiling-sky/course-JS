@@ -1,0 +1,43 @@
+.reciept {
+    box-shadow: 2px 5px 13px 4px rgba(0, 0, 0, 0.31);
+    padding: 10px;
+    display: inline-block;
+    width: 25vw;
+}
+
+.reciept__title {
+    text-align: center;
+}
+
+.reciept__block {}
+
+.reciept__line {}
+
+.product {
+    display: flex;
+    font-size: 18px;
+}
+
+.product__item {
+    flex: 1 1 25%;
+    margin-bottom: 15px;
+}
+.product__head{
+    font-weight: 600;
+}
+
+.product__name {
+    
+}
+
+.product__quantity {}
+
+.product__price {}
+
+.product__cost {}
+
+.reciept__total {
+    font-weight: 800;
+    text-transform: uppercase;
+    text-align: right;
+}

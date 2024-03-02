@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/task6.css">
     <title>Задача 6</title>
 </head>
 
@@ -13,8 +14,70 @@
         кожного товару окремо та загальну вартість. Вивести чек (як у супермаркеті) використовуючи елементи
         розмітки.</p>
 
-    <script>
 
+
+    <script>
+        // название товара
+
+        // количество и стоимость 
+        let firstProduct = prompt(`название первого товара`),
+            quantityFirstProduct = parseFloat(prompt(`количество первого товара`)),
+            priceFirstProduct = parseFloat(prompt(`стоимость первого товара `)),
+
+            secondProduct = prompt(`название второго товара`),
+            quantitySecondProduct = parseFloat(prompt(`количество второго товара`)),
+            priceSecondProduct = parseFloat(prompt(`стоимость второго товара `)),
+
+            thirdProduct = prompt(`название третьего товара`),
+            quantityThirdProduct = parseFloat(prompt(`количество третьего товара`)),
+            priceThirdProduct = parseFloat(prompt(`стоимость третьего товара`));
+
+
+        // найти 
+        // стоимость каждого товара отдельно
+        let costFirstProduct = quantityFirstProduct * priceFirstProduct,
+            costSecondProduct = quantitySecondProduct * priceSecondProduct,
+            costThirdProduct = quantityThirdProduct * priceThirdProduct;
+        // общая стоимость
+
+        let totalCostProduct = costFirstProduct + costSecondProduct + costThirdProduct;
+
+
+        // вывести в виде товарного чека
+        document.write(
+            `
+        <div class="reciept">
+        <h2 class="reciept__title">Товарный чек</h2>
+        <div class="reciept__block">
+            <div class="reciept__line product">
+                <div class="product__item product__head product__name">Название</div>
+                <div class="product__item product__head product__price">цена</div>
+                <div class="product__item product__head product__quantity">Количество</div>
+                <div class="product__item product__head product__cost">стоимость</div>
+            </div>
+            <div class="reciept__line product">
+                <div class="product__item  product__name">${firstProduct}</div>
+                <div class="product__item  product__price">${priceFirstProduct}</div>
+                <div class="product__item  product__quantity">${quantityFirstProduct}</div>
+                <div class="product__item  product__cost">${costFirstProduct}</div>
+            </div>
+            <div class="reciept__line product">
+                <div class="product__item  product__name">${secondProduct}</div>
+                <div class="product__item  product__price">${priceSecondProduct}</div>
+                <div class="product__item  product__quantity">${quantitySecondProduct}</div>
+                <div class="product__item  product__cost">${costSecondProduct}</div>
+            </div>
+            <div class="reciept__line product">
+                <div class="product__item  product__name">${thirdProduct}</div>
+                <div class="product__item  product__price">${priceThirdProduct}</div>
+                <div class="product__item  product__quantity">${quantityThirdProduct}</div>
+                <div class="product__item  product__cost">${costThirdProduct}</div>
+            </div>
+            <div class="reciept__total">Итого:${totalCostProduct}</div>
+        </div>
+    </div>
+        `
+        )
     </script>
 </body>
 
