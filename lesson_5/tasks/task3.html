@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача 3</title>
+</head>
+
+<body>
+    <h1>Задача 3</h1>
+    <p>Вивести на екран N абзаців (N вводиться користувачем)</p>
+
+    <script>
+        const quality = parseInt(prompt(`Введите количество абзацев`));
+
+        for (let i = 1; i <= quality; i++) {
+            document.write(`<h2>Заголовок ${i}</h2>`)
+            for (let p = 1; p <= i; p++) document.write(`<p>Раздел ${i}, Параграф ${p}</p>`)
+            document.write(`<hr>`)
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача 4</title>
+</head>
+
+<body>
+    <h1>Задача 4</h1>
+    <p>Ігровий автомат. Випадково вибираємо зображення у 3 позиціях. Вибір у кожній позиції вибирається як одне з
+        чотирьох зображень. Вивести ці зображення і повідомити виграш користувача (три перших зображення 100 грн, три
+        других – 200, три третіх – 500, три четвертих зображення – 1000грн). Використати цикли і switch (для вибору
+        зображення за номером</p>
+    <script>
+        let firstPrize = 0,
+            secondPrize = 0,
+            thirdPrize = 0,
+            fourthPrize = 0;
+        const numPrize = 3;
+
+        for (let img = 0; img < 3; img++) {
+            let rundomPosition = 1 + Math.floor(Math.random() * 4);
+            document.write(`<img src="img/img_${rundomPosition}.png" style="width: 100px; height: 100px;">`)
+            if (rundomPosition === 1) firstPrize++
+            if (rundomPosition === 2) secondPrize++
+            if (rundomPosition === 3) thirdPrize++
+            if (rundomPosition === 4) fourthPrize++
+        }
+        switch (numPrize) {
+            case firstPrize:
+                alert(`Ваш выигрыш : 100 грн`)
+                break
+            case secondPrize:
+                alert(`Ваш выигрыш : 200 грн`)
+                break
+            case thirdPrize:
+                alert(`Ваш выигрыш : 500 грн`)
+                break
+            case fourthPrize:
+                alert(`Ваш выигрыш : 1000 грн`)
+                break
+        }
+    </script>
+</body>
+
+</html>

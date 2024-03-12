@@ -21,12 +21,13 @@
             result = 'детсадовец'
         } else {
             if (ageUser > 6 && ageUser <= 17) {
+                // Первое условие можно не писать, поскольку невыполнилось предыдущее условие
                 result = 'школьник'
             } else {
-                if (ageUser >= 17 && ageUser < 22) {
+                if (ageUser <= 22) {
                     result = 'студент'
                 } else {
-                    if (ageUser >= 22 && ageUser <= 60) {
+                    if (ageUser <= 60) {
                         result = 'рабочий'
                     } else {
                         result = 'пенсионер'
