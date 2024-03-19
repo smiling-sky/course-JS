@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача 5</title>
+</head>
+
+<body>
+    <h1>Задача 5.</h1>
+    <p>Створити окремі функції, які переводять:
+        Сантиметри у дюйми;
+        Кілограми у фунти;
+        Кілометри у милі.</p>
+    <hr>
+    <script>
+        // 1см = 0,393701 дюйм
+        function getCentimeterToInch(centimeter) {
+            const inch = 0.393701
+            return centimeter * inch
+        }
+        // 1 кг = 2,20462 фунта
+        function getKilogramToPound(kilogram) {
+            const pound = 2.20462
+            return kilogram * pound
+        }
+
+        //  1км = 0,621371 мили
+        function getKilometerToMiles(kilometer) {
+            const miles = 0.621371
+            return kilometer * miles
+        }
+
+
+        let centimeter = parseFloat(prompt(`сантиметры`));
+        let kilometer = parseFloat(prompt(`километры`));
+        let kilogram = parseFloat(prompt(`килограм`));
+
+        let сentimeterToInch = getCentimeterToInch(centimeter);
+        let kilogramToPound = getKilogramToPound(kilogram);
+        let kilometerToMiles = getKilometerToMiles(kilometer);
+
+        document.write(`${centimeter} сантиметр равен ${сentimeterToInch} дюймов <br> 
+                        ${kilometer} километров равно ${kilometerToMiles} миль <br>
+                         ${kilogram} килограм равно ${kilogramToPound} фунтов`)
+    </script>
+</body>
+
+</html>

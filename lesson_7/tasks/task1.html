@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача 1</title>
+</head>
+
+<body>
+    <h1>Задача 1.</h1>
+    <p>
+        Створити функцію, яка за номером місяця повертає його назву.
+    </p>
+    <hr>
+    <script>
+        function getSeason(numOfMonth) {
+            let nameOfMonth
+            switch (numOfMonth) {
+                case 1:
+                    nameOfMonth = `Январь`
+                    break;
+                case 2:
+                    nameOfMonth = `Февраль`
+                    break;
+                case 3:
+                    nameOfMonth = `Март`
+                    break;
+                case 4:
+                    nameOfMonth = `Апрель`
+                    break;
+                case 5:
+                    nameOfMonth = `Май`
+                    break;
+                case 6:
+                    nameOfMonth = `Июнь`
+                    break;
+                case 7:
+                    nameOfMonth = `Июль`
+                    break;
+                case 8:
+                    nameOfMonth = `Август`
+                    break;
+                case 9:
+                    nameOfMonth = `Сентябрь`
+                    break;
+                case 10:
+                    nameOfMonth = `Октябрь`
+                    break;
+                case 11:
+                    nameOfMonth = `Ноябрь`
+                    break;
+                case 12:
+                    nameOfMonth = `Декабрь`
+                    break;
+            }
+            document.write(`Введенный месяц это ${nameOfMonth}`)
+        }
+        const numOfMonth = parseInt(prompt(`введите номер месяца`));
+        getSeason(numOfMonth);
+    </script>
+</body>
+
+</html>

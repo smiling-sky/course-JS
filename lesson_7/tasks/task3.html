@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача 3</title>
+</head>
+
+<body>
+    <h1>Задача 3</h1>
+    <p> Створити окремі функції, які для 4 чисел знаходять:</p>
+    <ol>
+        <li>суму;</li>
+        <li>добуток;</li>
+        <li>середнє арифметичне;</li>
+        <li>мінімальне значення.</li>
+    </ol>
+    <hr>
+    <script>
+        function getSum(num1, num2, num3, num4) {
+            return num1 + num2 + num3 + num4
+        }
+
+        function getMultiply(num1, num2, num3, num4) {
+            return num1 * num2 * num3 * num4
+        }
+
+        function getAverage(num1, num2, num3, num4) {
+            return (num1 + num2 + num3 + num4) / 4
+        }
+
+        function getMin(num1, num2, num3, num4) {
+            let minNum = +Infinity;
+            if (minNum > num1) minNum = num1
+            if (minNum > num2) minNum = num2
+            if (minNum > num3) minNum = num3
+            if (minNum > num4) minNum = num4
+            return minNum
+        }
+
+        const num1 = parseFloat(prompt(`num1`)),
+            num2 = parseFloat(prompt(`num2`)),
+            num3 = parseFloat(prompt(`num3`)),
+            num4 = parseFloat(prompt(`num4`));
+
+        let totalSum = getSum(num1, num2, num3, num4);
+        let totalMultiply = getMultiply(num1, num2, num3, num4);
+        let totalAverage = getAverage(num1, num2, num3, num4);
+        let totalMin = getMin(num1, num2, num3, num4)
+
+
+        document.write(`При введенныx num1=${num1}, num2=${num2}, num3=${num3}, num4=${num4}<br>`)
+        document.write(`<ol>
+                            <li>Сумма: ${totalSum}</li>
+                            <li>Произведение: ${totalMultiply}</li>
+                            <li>Среднее значение: ${totalAverage}</li>
+                            <li>Минимальное значение: ${totalMin}</li>
+                        </ol>`)
+    </script>
+</body>
+
+</html>
