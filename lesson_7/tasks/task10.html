@@ -12,9 +12,26 @@
     <p>Дано покази температур (довільна кількість). Розробити функцію, яка дозволить знайти середнє значення
         для додатних показів температури.</p>
     <hr>
-    <p> не знаю как решить на данный момент</p>
-    <script>
 
+    <P>смог решить после просмотра 8 урок</P>
+
+    <script>
+        function getAveregePositiveTemp(...tempArr) {
+            let count = 0;
+            let avarege = 0;
+            for (let i = 0; i < tempArr.length; i++) {
+                if (tempArr[i] > 0) {
+                    count++
+                    avarege += tempArr[i]
+                }
+            }
+            return avarege / count
+        }
+
+
+        let tempArr = [3, -35, 67, -13, 98, -45, 23, 11, -7, -15, 2]
+
+        document.write(`среднее значение положительных температур ${getAveregePositiveTemp(...tempArr)}`)
     </script>
 </body>
 

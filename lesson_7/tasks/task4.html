@@ -13,9 +13,40 @@
         кількість додатних, кількість більших за 100.</p>
     <hr>
 
-    <p> не знаю как решить на данный момент</p>
     <script>
+        let num1 = 9
+        let num2 = 110
+        let num3 = 48
 
+        // функция счетиков
+        function getResultTask(...numbers) {
+            let evenCount = 0,
+                positiveCount = 0,
+                moreHundredCount = 0
+
+            for (let i = 0; i < numbers.length; i++) {
+                if (numbers[i] % 2 === 0) evenCount++
+                if (numbers[i] > 0) positiveCount++
+                if (numbers[i] > 100) moreHundredCount++
+            }
+            return functionArray(evenCount, positiveCount, moreHundredCount)
+        }
+
+        // функция создания массива с данными count
+        function functionArray(...dataArr) {
+            let countsArr = []
+            for (let i = 0; i < dataArr.length; i++) {
+                countsArr.push(dataArr[i])
+            }
+            return countsArr
+        }
+
+
+        let result = getResultTask(num1, num2, num3)
+
+        document.write(
+            `количество четных чисел - ${result[0]}, <br> количество положительных чисел - ${result[1]},<br> и количество чисел > 100 - ${result[2]}`
+        )
     </script>
 </body>
 
