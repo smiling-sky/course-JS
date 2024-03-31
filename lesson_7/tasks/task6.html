@@ -12,10 +12,25 @@
     <p>cтворити функцію, яка створює таблицю з вказаною кількістю рядків і стовпців (таблиця заповнюється
         заданим фіксованим повідомленням).</p>
     <hr>
-    
-    <p> не знаю как решить на данный момент</p>
+
+
     <script>
-        
+        function createTable(rowsNumber, colsNumber, message) {
+            document.write(`<table border="2px">`)
+
+            for (let rows = 0; rows < rowsNumber; rows++) {
+                document.write(`<tr>`)
+
+                for (let cols = 0; cols < colsNumber; cols++) {
+                    document.write(`<td>${message} </td`)
+                }
+
+                document.write(`</tr>`)
+            }
+
+            document.write(`</table>`)
+        }
+        createTable(4, 5, "good")
     </script>
 </body>
 

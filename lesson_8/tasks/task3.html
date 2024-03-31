@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача 3</title>
+</head>
+
+<body>
+    <h1>Задача 3</h1>
+    <p>Дано масив імен учнів. З’ясувати скільки разів зустрічається ім’я «Іван».</p>
+
+    <hr>
+    <script>
+        let studentNames = ["Иван", "Андрей", " МАксим", "Сергей", "ИВАН", "МихаИл", "ИВАН"]
+
+        function getCountNameIvan(studentNames) {
+            let count = 0;
+            for (let i = 0; i < studentNames.length; i++) {
+                if (studentNames[i].toLowerCase() === "Иван".toLowerCase()) count++
+            }
+            return count
+        }
+
+        let countNameIvan = getCountNameIvan(studentNames)
+
+        document.write(`Имя Иван встречается ${countNameIvan} раз(a)`)
+    </script>
+</body>
+
+</html>

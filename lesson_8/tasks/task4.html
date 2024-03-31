@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача 4</title>
+</head>
+
+<body>
+    <h1>Задача 4</h1>
+    <p>
+        Дано послідовність номерів автомобілів. Підрахувати кількість номерів, які :
+    </p>
+    <ol>
+        <li>починаються на букву «А»;</li>
+        <li>перша і остання літери співпадають;</li>
+        <li>складаються з більше ніш 5 символів;</li>
+    </ol>
+    <hr>
+
+    <script>
+        let arrLicenseCar = ['AB7654YR', 'DF785JD', 'ML97GG', 'BJ6JB', 'AK9867JA' , 'K34B']
+
+        //  первое условие
+
+        function getCountLicenseBeginA(arrLicenseCar) {
+            let countLicense = 0
+            for (let i = 0; i < arrLicenseCar.length; i++) {
+                if (arrLicenseCar[i][0].toUpperCase() === "a".toUpperCase()) countLicense++
+            }
+            return countLicense
+        }
+
+        // второе условие
+        function getCountSameFirstAndLastLetters(arrLicenseCar) {
+            let countLicense = 0
+
+            for (let i = 0; i < arrLicenseCar.length; i++) {
+                let lastIndex = arrLicenseCar[i].length - 1
+                if (arrLicenseCar[i][0].toUpperCase() === arrLicenseCar[i][lastIndex].toUpperCase()) countLicense++
+            }
+            return countLicense
+        }
+
+        // третье условие
+        function getCountLetterMoreFive(arrLicenseCar) {
+            let countLicense = 0
+            const minLenght = 5
+            for (let i = 0; i < arrLicenseCar.length; i++) {
+                let lenghtItemArr = arrLicenseCar[i].length
+                if (lenghtItemArr > minLenght) countLicense++
+            }
+            return countLicense
+        }
+
+        document.write(`
+            <ol>
+                <li>починаються на букву «А» : ${getCountLicenseBeginA(arrLicenseCar)} ;</li>
+                <li>перша і остання літери співпадають : ${getCountSameFirstAndLastLetters(arrLicenseCar)} ;</li>
+                <li>складаються з більше ніш 5 символів : ${getCountLetterMoreFive(arrLicenseCar)} ;</li>
+            </ol>
+        `)
+    </script>
+</body>
+
+</html>

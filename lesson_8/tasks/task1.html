@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача 1</title>
+</head>
+
+<body>
+    <h1>Задача 1.</h1>
+    <p>
+        Дано масив, який містить оцінки з К предметів. Знайти середній бал і з’ясувати до якої категорії він відноситься
+        (відмінник, двійочник (має хоча би одну двійку), хорошист (оцінки добре і відмінно), трійочник(є хоча би одна
+        трійка)).
+    </p>
+    <hr>
+
+    <script>
+        // получаем массив оценок
+        function getPossibleRatingsArr() {
+            let userPossibleRatings = []
+            let getRating
+
+            do {
+                getRating = parseFloat(prompt(`введите оценку`));
+                if (!isNaN(getRating)) {
+                    userPossibleRatings.push(getRating)
+                }
+
+            } while (!isNaN(getRating));
+
+            return userPossibleRatings
+        }
+
+        // находим среднюю оценку
+        function getAverageRating(ratingsList) {
+            let sumRating = 0;
+            for (let i = 0; i < ratingsList.length; i++) {
+                sumRating += ratingsList[i]
+            }
+            let averageRating = Math.round(sumRating / ratingsList.length)
+            return averageRating
+        }
+
+        // находим категорию ученика по средней оценке
+        function getCategoryByAverageRating(averageRating) {
+            let category;
+            switch (averageRating) {
+                case 5:
+                    category = "відмінник"
+                    break;
+                case 4:
+                    category = "хорошист"
+                    break;
+                case 3:
+                    category = "трійочник"
+                    break;
+                default:
+                    category = "двійочник"
+                    break;
+            }
+            return category
+        }
+
+        // главная функция
+        function getStudentsCategory(possibleRatings) {
+            let averageRating = getAverageRating(possibleRatings)
+            let categoryByAverageRating = getCategoryByAverageRating(averageRating)
+            return categoryByAverageRating
+        }
+
+
+        // let possibleRatings = [5, 4, 3, 4, 5, 5, 4, 4];
+        let possibleRatings = getPossibleRatingsArr()
+
+
+        document.write(
+            `список оценок ${possibleRatings} <br> средняя оценка:  ${getAverageRating(possibleRatings)} <br>  ${getStudentsCategory(possibleRatings)} `
+        )
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача 5</title>
+</head>
+
+<body>
+    <h1>Задача 5.</h1>
+    <p>
+        Дано послідовність оцінок учня. Підрахувати кількість:
+    </p>
+    <ol>
+        <li>двійок</li>
+        <li>кількість хороших оцінок (добре, відмінно);</li>
+        <li>кількість оцінок, які нижче середнього.</li>
+    </ol>
+    <hr>
+    <script>
+          let possibleRatings = [5, 4, 3, 4, 5, 2, 3, 4];
+        //  let possibleRatings = getPossibleRatingsArr()
+
+        // получаем массив оценок
+        function getPossibleRatingsArr() {
+            let userPossibleRatings = []
+            let getRating
+
+            do {
+                getRating = parseFloat(prompt(`введите оценку`));
+                if (!isNaN(getRating)) {
+                    userPossibleRatings.push(getRating)
+                }
+
+            } while (!isNaN(getRating));
+
+            return userPossibleRatings
+        }
+
+        // количиство двоек
+        function getCountScoreTwo(possibleRatings) {
+            let count = 0
+            for (let i = 0; i < possibleRatings.length; i++) {
+                if (possibleRatings[i] === 2) count++
+            }
+            return count
+        }
+
+        // количество хороших оценок(я так понимаю это оценки 4 и 5)
+        function getCountGoodScore(possibleRatings) {
+            let count = 0
+            for (let i = 0; i < possibleRatings.length; i++) {
+                if (possibleRatings[i] > 3) count++
+            }
+            return count
+        }
+
+        // третье условие 
+            // находим среднюю оценку
+        function getAverageRating(possibleRatings) {
+            let sumRating = 0
+
+            for (let i = 0; i < possibleRatings.length; i++) {
+                sumRating += possibleRatings[i]
+            }
+
+            let averageRating = sumRating / possibleRatings.length
+            return Math.round(averageRating) 
+        }
+
+        // основная функция
+        function getCountBelowAverageScore(possibleRatings) {
+            let count = 0
+            let averageRating = getAverageRating(possibleRatings)
+            for (let i = 0; i < possibleRatings.length; i++) {
+                if (possibleRatings[i] < averageRating) count++
+            }
+            return count
+        }
+
+        document.write(`
+             <ol>
+                <li>двійок : ${getCountScoreTwo(possibleRatings)}</li>
+                <li>кількість хороших оцінок (добре, відмінно) : ${getCountGoodScore(possibleRatings)} ;</li>
+                <li>кількість оцінок, які нижче середнього: ${getCountBelowAverageScore(possibleRatings)} .</li>
+             </ol>
+        `)
+    </script>
+</body>
+
+</html>

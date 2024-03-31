@@ -5,6 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Задача 8</title>
+    <style>
+        div {
+            width: 200px;
+        }
+
+        img {
+            width: 200px;
+        }
+    </style>
 </head>
 
 <body>
@@ -13,9 +22,21 @@
         переходимо при кліку на зображення (тег img повине знаходитись у середині тега a: <a> <img src=”шлях”></a>))</p>
     <hr>
 
-    <p> не знаю как решить на данный момент</p>
     <script>
+        function createBanner(imgPath, title, link) {
+            document.write(`
+            <div>
+                <h2 class="title">${title}</h2>
+                <a href="${link}"><img src="${imgPath}" alt=""></a>
+            </div>
+            `)
+        }
+        const imgPath =
+            'https://images.unsplash.com/photo-1613078676786-000bd2619d5f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDE5fGJvOGpRS1RhRTBZfHxlbnwwfHx8fHw%3D',
+            title = 'Banner',
+            link = 'https://www.google.com/webhp?hl=ru&sa=X&ved=0ahUKEwiY-f-6lJyFAxXMTEEAHWlHDC0QPAgJ'
 
+        createBanner(imgPath, title, link)
     </script>
 </body>
 

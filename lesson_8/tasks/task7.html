@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача 7</title>
+</head>
+
+<body>
+    <h1>Задача 7.</h1>
+    <p>
+        Дано послідовність платіжок протягом року. Знайти сумарну кількість грошей за: </p>
+    <ol>
+        <li> за весь рік;</li>
+        <li>у першій половині року;</li>
+        <li>у другій половині року;</li>
+        <li>за літо;</li>
+        <li>за ІІ квартал;</li>
+        <li>за парні місяці (з парними номерами);</li>
+        <li>за місяці, які є початковими у сезоні (весна, літо, осінь, зима).</li>
+    </ol>
+    <hr>
+    <script>
+        let paymentsList = [505, 3715, 2867, 1355, 3549, 2404, 3670, 1095, 2450, 4216, 1633, 4653]
+
+        function getSum(paymentsList, startMonth, endMonth, step = 1) {
+            let sum = 0
+            for (let i = startMonth - 1; i < endMonth; i += step) {
+                sum += paymentsList[i]
+            }
+            return sum
+        }
+
+        let sumPerYear = getSum(paymentsList, 1, 12)
+        let sumPerFirstHalfYear = getSum(paymentsList, 1, 6)
+        let sumPerSecondHalfYear = getSum(paymentsList, 6, 12)
+        let sumPerSummer = getSum(paymentsList, 6, 8)
+        let sumPerSecondQuartal = getSum(paymentsList, 4, 6)
+        let sumPerEvenMonth = getSum(paymentsList, 2, 12, 2)
+        let sumPerStartSeasonMonth = getSum(paymentsList, 3, 12, 3)
+
+        document.write(`
+        <ol>
+            <li> за весь рік ${sumPerYear};</li>
+            <li>у першій половині року ${sumPerFirstHalfYear};</li>
+            <li>у другій половині року ${sumPerSecondHalfYear};</li>
+            <li>за літо ${sumPerSummer};</li>
+            <li>за ІІ квартал ${sumPerSecondQuartal};</li>
+            <li>за парні місяці (з парними номерами) ${sumPerEvenMonth} ;</li>
+            <li>за місяці, які є початковими у сезоні (весна, літо, осінь, зима) ${sumPerStartSeasonMonth} .</li>
+        </ol>
+        `)
+    </script>
+</body>
+
+</html>

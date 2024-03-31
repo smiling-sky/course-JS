@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача 8</title>
+</head>
+
+<body>
+    <h1>Задача 8.</h1>
+    <p>Дано одновимірний масив, у якому зберігається певна виграшна сума (елементи заповнюються випадковим чином
+        значеннями від -500 до 500). Надаючи користувачу можливість вибирати номери елементів (поки він не відмовиться).
+        Знаходити сумарний виграш.</p>
+    <hr>
+
+    <script>
+        const minValue = -500
+        const maxValue = 500
+
+        // получаем массив выбора номеров элемента от пользователя
+        function getUserChoice() {
+            let userChoice = []
+            let getNumber
+
+            do {
+                getNumber = parseFloat(prompt(`введите номер элемента`));
+                if (!isNaN(getNumber)) {
+                    userChoice.push(getNumber)
+                }
+
+            } while (!isNaN(getNumber));
+
+            return userChoice
+        }
+
+        // найти максимальное число из выбора пользователя, это будет максимальный индекс массива
+        function getMaxIndex(arrWithUserChoice) {
+            let maxIndex = arrWithUserChoice[0]
+            for (let i = 1; i < arrWithUserChoice.length; i++) {
+                if (arrWithUserChoice[i] > maxIndex) maxIndex = arrWithUserChoice[i]
+            }
+            return maxIndex
+        }
+
+        // нужна функция для создания массива со случайной суммой внутри
+        // добавил 1 к maxIndex изза отчета индекса от 0
+        function getArrWithRandomSum(minValue, maxValue, maxIndex) {
+            let randomWinSum = []
+            for (let i = 0; i < maxIndex+1; i++) {
+                let rundom = minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
+                randomWinSum.push(rundom)
+            }
+            return randomWinSum
+        }
+
+        // функция суммирования выигрышных сумм
+        function getWinSum(userChoice, arrWithRandomSum) {
+            let winSum = 0
+            for (let i = 0; i < userChoice.length; i++) {
+                winSum += arrWithRandomSum[userChoice[i]]
+            }
+            return winSum
+        }
+
+        function getUserWin(minValue, maxValue) {
+            let userChoice = getUserChoice()
+            let maxIndex = getMaxIndex(userChoice)
+            let arrWithRandomSum = getArrWithRandomSum(minValue, maxValue, maxIndex)
+            let winSum = getWinSum(userChoice, arrWithRandomSum)
+            return winSum
+        }
+
+
+        document.write(`${getUserWin(minValue, maxValue)}`)
+    </script>
+</body>
+
+</html>
