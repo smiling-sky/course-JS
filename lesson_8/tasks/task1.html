@@ -39,14 +39,22 @@
             for (let i = 0; i < ratingsList.length; i++) {
                 sumRating += ratingsList[i]
             }
-            let averageRating = Math.round(sumRating / ratingsList.length)
-            return averageRating
+            return Math.round(sumRating / ratingsList.length)
+        }
+        // находим минимальную оценку
+        function getMinRating(ratingsList) {
+            let minRating = ratingsList[0]
+            for (let i = 1; i < ratingsList.length; i++) {
+                if (ratingsList[i] < minRating) minRating = ratingsList[i]
+            }
+            return minRating
         }
 
+
         // находим категорию ученика по средней оценке
-        function getCategoryByAverageRating(averageRating) {
+        function getCategoryByMinRating(minRating) {
             let category;
-            switch (averageRating) {
+            switch (minRating) {
                 case 5:
                     category = "відмінник"
                     break;
@@ -66,13 +74,14 @@
         // главная функция
         function getStudentsCategory(possibleRatings) {
             let averageRating = getAverageRating(possibleRatings)
-            let categoryByAverageRating = getCategoryByAverageRating(averageRating)
-            return categoryByAverageRating
+            let minRating = getMinRating(possibleRatings)
+            let categoryByMinRating = getCategoryByMinRating(minRating) 
+            return categoryByMinRating
         }
 
 
-        // let possibleRatings = [5, 4, 3, 4, 5, 5, 4, 4];
-        let possibleRatings = getPossibleRatingsArr()
+        let possibleRatings = [5, 4, 3, 4, 5, 5, 4, 4];
+        // let possibleRatings = getPossibleRatingsArr()
 
 
         document.write(

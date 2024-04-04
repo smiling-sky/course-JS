@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача 8</title>
+</head>
+
+<body>
+    <h1>Задача 8.</h1>
+    <p>Дано масив номерів авто. Сформувати новий масив тих, які починаються на «А»</p>
+    <hr>
+
+    <script>
+        let arrLicenseCar = ['AB7654YR', 'DF785JD', 'ML97GG', 'BJ6JB', 'aK9867JA', 'K34B', 'j45lij']
+        const firstLetterLicence = "a".toUpperCase()
+        let licenceCarBeginsA = []
+
+        for (const licence of arrLicenseCar) {
+            if (licence[0].toUpperCase() === firstLetterLicence) licenceCarBeginsA.push(licence)
+        }
+
+        document.write(licenceCarBeginsA)
+    </script>
+</body>
+
+</html>

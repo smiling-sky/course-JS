@@ -20,14 +20,15 @@
     <hr>
 
     <script>
-        let arrLicenseCar = ['AB7654YR', 'DF785JD', 'ML97GG', 'BJ6JB', 'AK9867JA' , 'K34B']
+        let arrLicenseCar = ['AB7654YR', 'DF785JD', 'ML97GG', 'BJ6JB', 'AK9867JA', 'K34B', 'j45lij']
 
         //  первое условие
 
         function getCountLicenseBeginA(arrLicenseCar) {
             let countLicense = 0
+            const searchLetter = "a".toUpperCase()
             for (let i = 0; i < arrLicenseCar.length; i++) {
-                if (arrLicenseCar[i][0].toUpperCase() === "a".toUpperCase()) countLicense++
+                if (arrLicenseCar[i][0].toUpperCase() === searchLetter) countLicense++
             }
             return countLicense
         }
@@ -36,12 +37,17 @@
         function getCountSameFirstAndLastLetters(arrLicenseCar) {
             let countLicense = 0
 
-            for (let i = 0; i < arrLicenseCar.length; i++) {
-                let lastIndex = arrLicenseCar[i].length - 1
-                if (arrLicenseCar[i][0].toUpperCase() === arrLicenseCar[i][lastIndex].toUpperCase()) countLicense++
+            // for (let i = 0; i < arrLicenseCar.length; i++) {
+            //     //      let lastIndex = arrLicenseCar[i].length - 1
+            //     if (arrLicenseCar[i][0].toUpperCase() === lastIndex.toUpperCase()) countLicense++
+            // }
+
+            for (const license of arrLicenseCar) {
+                if (license[0].toUpperCase() === license.at(-1).toUpperCase()) countLicense++
             }
             return countLicense
         }
+
 
         // третье условие
         function getCountLetterMoreFive(arrLicenseCar) {

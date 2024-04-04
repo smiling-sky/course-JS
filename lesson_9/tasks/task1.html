@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача 1</title>
+</head>
+
+<body>
+    <h1>Задача 1.</h1>
+    <p>
+        Користувач вводить кількість елементів. Створити масив, що складається з вказаної кількості елементів
+        заповнених нулями.
+    </p>
+    <hr>
+
+    <script>
+        function createArrWithZero(qtyEl) {
+            let zeroArr = new Array(qtyZero)
+            zeroArr.fill(0)
+            return zeroArr
+        }
+        let qtyZero = parseInt(prompt(`введите количество елементов`))
+        document.write(createArrWithZero(qtyZero))
+    </script>
+</body>
+
+</html>

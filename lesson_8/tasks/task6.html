@@ -28,8 +28,11 @@
         // функция вывода результата в виде списка
         function getListAvailbleProducts(finishListProduct) {
             document.write(`<ul>`)
-            for (let i = 0; i < finishListProduct.length; i++) {
-                document.write(`<li>${finishListProduct[i]}</li>`)
+            // for (let i = 0; i < finishListProduct.length; i++) {
+            //     document.write(`<li>${finishListProduct[i]}</li>`)
+            // }
+            for (const product of finishListProduct) {
+                document.write(`<li>${product}</li>`)
             }
             document.write(`</ul>`)
         }

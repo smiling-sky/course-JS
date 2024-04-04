@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача 5</title>
+</head>
+
+<body>
+    <h1>Задача 5.</h1>
+    <p>
+        <p>Дано масив елементів. Знайти добуток додатних елементів</p>
+    </p>
+
+    <hr>
+    <script>
+        let numbersArr = [
+            -374, 10, 0, 11, 15, 5, 6, -10, -85, 1
+        ]
+        let prodPositiveNum = 1
+        for (const number of numbersArr) {
+            if (number > 0) prodPositiveNum *= number
+        }
+
+        document.write(prodPositiveNum)
+    </script>
+</body>
+
+</html>

@@ -17,8 +17,9 @@
 
         function getCountNameIvan(studentNames) {
             let count = 0;
+            const name = "Иван".toLowerCase()
             for (let i = 0; i < studentNames.length; i++) {
-                if (studentNames[i].toLowerCase() === "Иван".toLowerCase()) count++
+                if (studentNames[i].toLowerCase() === name) count++
             }
             return count
         }

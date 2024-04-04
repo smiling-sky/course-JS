@@ -15,23 +15,23 @@
         <li>номери днів, протягом яких кількість відвідувачів була меншою за 20;</li>
         <li>номери днів, коли кількість відвідувачів була мінімальною;</li>
         <li>номери днів, коли кількість відвідувачів була максимально;</li>
-        <li>загальну кількість клієнтів у робочі дні та окремо загальну кількість клієнтів  на вихідних.</li>
+        <li>загальну кількість клієнтів у робочі дні та окремо загальну кількість клієнтів на вихідних.</li>
     </ol>
     <hr>
     <script>
         // массив посетителей за неделю
-        // let numberOfVisitorsPerWeek = [15, 25, 10, 45, 10, 24, 16]
-        let numberOfVisitorsPerWeek = getNumbersVisitors()
+        let numberOfVisitorsPerWeek = [15, 25, 10, 45, 10, 24, 16]
+        // let numberOfVisitorsPerWeek = getNumbersVisitors()
 
         function getNumbersVisitors() {
             let arrNumbersVisitorsPerWeek = new Array(7)
             for (let i = 0; i < arrNumbersVisitorsPerWeek.length; i++) {
-                let inputNumbersVisitorsPerWeek = parseInt(prompt(`Введите количество посетителей за ${i+1} день недели`))
+                let inputNumbersVisitorsPerWeek = parseInt(prompt(
+                    `Введите количество посетителей за ${i+1} день недели`))
                 arrNumbersVisitorsPerWeek[i] = inputNumbersVisitorsPerWeek
             }
             return arrNumbersVisitorsPerWeek
         }
-
 
         // функция для нахождения минимального количества посетителей
 
@@ -55,6 +55,7 @@
 
 
         // первае условие задачи
+
         function getNumbersDaysWhenVisitorsLessTwenty(numberOfVisitorsPerWeek) {
             let numbersDaysWhenVisitorsLessTwenty = []
             for (let i = 0; i < numberOfVisitorsPerWeek.length; i++) {
@@ -64,23 +65,33 @@
         }
 
         // второе условие задачи
-        function getNumbersDayWhenMinVisitors(numberOfVisitorsPerWeek) {
-            let minVisitors = getMinNumberVisitors(numberOfVisitorsPerWeek)
-            let numbersDaysMinVisitors = []
-            for (let i = 0; i < numberOfVisitorsPerWeek.length; i++) {
-                if (numberOfVisitorsPerWeek[i] === minVisitors) numbersDaysMinVisitors.push(i + 1)
-            }
-            return numbersDaysMinVisitors
-        }
+        // function getNumbersDayWhenMinVisitors(numberOfVisitorsPerWeek) {
+        //     let minVisitors = getMinNumberVisitors(numberOfVisitorsPerWeek)
+        //     let numbersDaysMinVisitors = []
+        //     for (let i = 0; i < numberOfVisitorsPerWeek.length; i++) {
+        //         if (numberOfVisitorsPerWeek[i] === minVisitors) numbersDaysMinVisitors.push(i + 1)
+        //     }
+        //     return numbersDaysMinVisitors
+        // }
 
         // третье условие задачи
-        function getNumbersDayWhenMaxVisitors(numberOfVisitorsPerWeek) {
-            let maxVisitors = getMaxNumberVisitors(numberOfVisitorsPerWeek)
-            let numbersDaysMaxVisitors = []
+        // function getNumbersDayWhenMaxVisitors(numberOfVisitorsPerWeek) {
+        //     let maxVisitors = getMaxNumberVisitors(numberOfVisitorsPerWeek)
+        //     let numbersDaysMaxVisitors = []
+        //     for (let i = 0; i < numberOfVisitorsPerWeek.length; i++) {
+        //         if (numberOfVisitorsPerWeek[i] === maxVisitors) numbersDaysMaxVisitors.push(i + 1)
+        //     }
+        //     return numbersDaysMaxVisitors
+        // }
+
+        // обьеденил верхние функции
+        function getNumbersDayWhen(numberOfVisitorsPerWeek, minOrMaxDay) {
+            let visitors = minOrMaxDay(numberOfVisitorsPerWeek)
+            let numbersDays = []
             for (let i = 0; i < numberOfVisitorsPerWeek.length; i++) {
-                if (numberOfVisitorsPerWeek[i] === maxVisitors) numbersDaysMaxVisitors.push(i + 1)
+                if (numberOfVisitorsPerWeek[i] === visitors) numbersDays.push(i + 1)
             }
-            return numbersDaysMaxVisitors
+            return numbersDays
         }
 
         // четветрое условие задачи
@@ -101,16 +112,13 @@
             return totalVisitors
         }
 
-
-
-
-
         document.write(`
             <ol>
                 <li>номери днів, протягом яких кількість відвідувачів була меншою за 20: ${getNumbersDaysWhenVisitorsLessTwenty(numberOfVisitorsPerWeek)}</li>
-                <li>номери днів, коли кількість відвідувачів була мінімальною: ${getNumbersDayWhenMinVisitors(numberOfVisitorsPerWeek)}</li>
-                <li>номери днів, коли кількість відвідувачів була максимально: ${getNumbersDayWhenMaxVisitors(numberOfVisitorsPerWeek)}</li>
-                <li>загальну кількість клієнтів у робочі дні : ${getTotalVisitorsInWorkingDays(numberOfVisitorsPerWeek)}, <br> загальнa кількість клієнтів  на вихідних: ${getTotalVisitorsInWeekend(numberOfVisitorsPerWeek)}.</li>
+                <li>номери днів, коли кількість відвідувачів була мінімальною: ${getNumbersDayWhen(numberOfVisitorsPerWeek, getMinNumberVisitors)}</li>
+                <li>номери днів, коли кількість відвідувачів була макс: ${getNumbersDayWhen(numberOfVisitorsPerWeek, getMaxNumberVisitors)}</li>
+                <li>загальну кількість клієнтів у робочі дні : ${getTotalVisitorsInWorkingDays(numberOfVisitorsPerWeek)}, <br> 
+                    загальнa кількість клієнтів  на вихідних: ${getTotalVisitorsInWeekend(numberOfVisitorsPerWeek)}.</li>
             </ol>
         `)
     </script>

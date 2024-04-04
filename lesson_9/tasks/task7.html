@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача 7</title>
+</head>
+
+<body>
+    <h1>Задача 7.</h1>
+    <p>Дано масив цін. Змінити цей масив так, що на ціни товарів, які більші за 1000 грн. дати 30% знижки.</p>
+
+    <hr>
+
+    <script>
+        let priceList = [3740, 2090, 4880, 430, 221, 3372, 1055, 396, 4922, 1831]
+        const minPrice = 1000
+        const discount = 0.3
+        priceList.forEach((price, index, priceList) => {
+            if (price > minPrice) priceList[index] = price - price * discount
+        });
+
+        for (const price of priceList) {
+            document.write(`${price} <br>`)
+        }
+    </script>
+</body>
+
+</html>
