@@ -18,10 +18,12 @@
         const tax = 0.2
         let priceList = [3740, 2090, 4880, 430, 221, 3372, 1055, 396, 4922, 1831]
 
-        let taxPriceList = []
-        priceList.forEach(price => {
-            taxPriceList.push(price * tax)
-        });
+        // let taxPriceList = []
+        // priceList.forEach(price => {
+        //     taxPriceList.push(price * tax)
+        // });
+        
+        let taxPriceList = priceList.map(price => price * tax)
 
         // ввывод с одним знаком после запятой
         for (const taxPrice of taxPriceList) {

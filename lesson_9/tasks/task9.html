@@ -16,10 +16,14 @@
 
     <script>
         let names = ["Alice", "Bob", "Charlie", "Diana", "Edward"];
-        let firstLetterName = []
-        names.forEach(name => {
-            firstLetterName.push(name[0])
-        });
+
+        // let firstLetterName = []
+        // names.forEach(name => {
+        //     firstLetterName.push(name[0])
+        // });
+
+        let firstLetterName = names.map(name => name[0])
+
         document.write(firstLetterName)
     </script>
 </body>
