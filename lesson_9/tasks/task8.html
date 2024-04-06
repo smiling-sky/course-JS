@@ -15,11 +15,13 @@
     <script>
         let arrLicenseCar = ['AB7654YR', 'DF785JD', 'ML97GG', 'BJ6JB', 'aK9867JA', 'K34B', 'j45lij']
         const firstLetterLicence = "a".toUpperCase()
-        let licenceCarBeginsA = []
 
-        for (const licence of arrLicenseCar) {
-            if (licence[0].toUpperCase() === firstLetterLicence) licenceCarBeginsA.push(licence)
-        }
+        // let licenceCarBeginsA = []
+        // for (const licence of arrLicenseCar) {
+        //     if (licence[0].toUpperCase() === firstLetterLicence) licenceCarBeginsA.push(licence)
+        // }
+
+        let licenceCarBeginsA = arrLicenseCar.filter(el => el[0].toUpperCase() === firstLetterLicence)
 
         document.write(licenceCarBeginsA)
     </script>

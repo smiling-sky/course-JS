@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>leson 10</title>
+</head>
+
+<body>
+    <h1>ДЗ №10</h1>
+
+    <body>
+        <h1>Задача 1.</h1>
+        <p>
+            Дано історію цін на цінні папери за деякий період (згенерувати від 1 до 10000)
+        </p>
+        <ol>
+            <li>Сформувати новий масив, у якому є тільки ті, що більші за 1000 грн.</li>
+            <li>Сформувати новий масив, у якому є номери тільки тих, що більші за 1000 грн.</li>
+            <li>Сформувати список з тих цін, які більші за попереднє значення</li>
+            <li>Сформувати новий масив, що міститиме значення цін у відсотках стосовно максимального</li>
+            <li>Підрахувати кількість змін цін</li>
+            <li>Визначити, чи є ціна, що менше 1000</li>
+            <li>Визначати, чи усі ціни більше за 1000</li>
+            <li>Підрахувати кількість цін, що більше за 1000</li>
+            <li>Підрахувати суму цін, що більше за 1000</li>
+            <li>Знайти першу ціну, що більше за 1000</li>
+            <li>Знайти індекс першої ціни, що більше за 1000</li>
+            <li>Знайти останню ціну, що більше за 1000</li>
+            <li>Знайти індекс останньої ціни, що більше за 1000</li>
+        </ol>
+        <hr>
+
+        <script>
+            // генерую массив из случайно сгенерированного числа (от 5 до 15) элементов
+            function getArrRundomPrices(minNum, maxNum, qty) {
+                let randomArr = []
+                for (let index = 0; index < qty; index++) {
+                    let rundom = minNum + Math.floor(Math.random() * maxNum)
+                    randomArr.push(rundom)
+                }
+                return randomArr
+            }
+
+            let minNum = 1
+            let maxNum = 10000
+            let rundomQty = 5 + Math.floor(Math.random() * 11)
+            let pricesList = getArrRundomPrices(minNum, maxNum, rundomQty)
+
+            document.write(`массив состоящий из ${rundomQty} сгенерированых числел: ${pricesList} <br> <br>`)
+
+
+            // Сформувати новий масив, у якому є тільки ті, що більші за 1000 грн.
+            let pricesListMore1000 = pricesList.filter(price => price > 1000)
+            document.write(`1. массив состоящий из элементов > 1000: ${pricesListMore1000} <br>`)
+
+
+            // Сформувати новий масив, у якому є номери тільки тих, що більші за 1000 грн.
+            // let numberPricesListMore1000 = []
+            // for (let i = 0; i < pricesList.length; i++) {
+            //     if (pricesList[i] > 1000) numberPricesListMore1000.push(i + 1)
+            // }
+
+            // pricesList.forEach((price, index) => {
+            //     if (price > 1000) numberPricesListMore1000.push(index + 1)
+            // })
+
+            let numberPricesListMore1000 = pricesList.reduce((prevPrice, price, index) => {
+                if (price > 1000) prevPrice.push(index + 1)
+                return prevPrice
+            }, [])
+
+            document.write(`2. массив состоящий из номеров элементов > 1000: ${numberPricesListMore1000} <br>`)
+
+
+            // Сформувати список з тих цін, які більші за попереднє значення
+            let сurValMorePrevVal = pricesList.filter((price, index, baseArr) => index > 0 && price > baseArr[index -
+                1])
+
+            // let сurValMorePrevVal = pricesList.reduce((prevPrice, price, index, baseArr) => {
+            //     if (index > 0 && price > baseArr[index - 1]) prevPrice.push(price)
+            //     return prevPrice
+            // }, [])
+
+            document.write(`3. массив где элемент больше предыдущего: ${сurValMorePrevVal} <br>`)
+
+
+            // Сформувати новий масив, що міститиме значення цін у відсотках стосовно максимального
+            let maxPrice = pricesList.reduce((prevPrice, price) => prevPrice > price ? prevPrice : prevPrice = price)
+
+            let prcForMaxPrice = pricesList.map(price => price / maxPrice * 100)
+            document.write(
+                `4. массив содержащий проценты от макс числа ${maxPrice}: <br> ${prcForMaxPrice.join('; ')} <br>`)
+
+
+            // Підрахувати кількість змін цін  reduce где prev !== price
+            let countChange = pricesList.reduce((prevCount, price, index, baseArr) =>
+                index > 0 && price !== baseArr[index - 1] ?
+                prevCount + 1 : prevCount, 0)
+            document.write(`5. количество изменений цен: ${countChange} <br>`)
+
+
+            // Визначити, чи є ціна, що менше 1000
+            if (pricesList.some(price => price < 1000)) document.write(`6.  В массиве есть цена менше за 1000 <br>`)
+            else document.write(`6.  В массиве нет цены менше за 1000 <br>`)
+
+
+            // Визначати, чи усі ціни більше за 1000
+            if (pricesList.every(price => price > 1000)) document.write(`7. В массиве все цены больше за 1000 <br>`)
+            else document.write(`7.  В массиве ecть цены менше за 1000 <br>`)
+
+
+            // Підрахувати кількість цін, що більше за 1000
+            let countPriceThatMore1000 = pricesList.reduce((prevCount, price) => price > 1000 ? prevCount + 1 :
+                prevCount,
+                0)
+            document.write(`8. Количество цен в массиве больших 1000 : ${countPriceThatMore1000}<br>`)
+
+
+            // Підрахувати суму цін, що більше за 1000
+            let sumPricesThatMore1000 = pricesList.reduce((prevSum, price) => price > 1000 ? prevSum + price : prevSum,
+                0)
+            document.write(`9. Сумма цен больших 1000 : ${sumPricesThatMore1000} <br>`)
+
+
+            // Знайти першу ціну, що більше за 1000
+            let firstPriceThatMore1000 = pricesList.find(price => price > 1000)
+            document.write(`10. Первая цена большая 1000 : ${firstPriceThatMore1000} <br>`)
+
+            // Знайти індекс першої ціни, що більше за 1000
+            let indexFirstPriceThatMore1000 = pricesList.findIndex(price => price > 1000)
+            document.write(`11. Индекс первой цены большей за 1000 : ${indexFirstPriceThatMore1000} <br>`)
+
+
+            // Знайти останню ціну, що більше за 1000
+            let lastPriceThatMore1000 = pricesList.findLast(price => price > 1000)
+            document.write(`12. Последняя цена большая 1000 : ${lastPriceThatMore1000} <br>`)
+
+
+            // Знайти індекс останньої ціни, що більше за 1000
+            let indexLastPriceThatMore1000 = pricesList.findLastIndex(price => price > 1000)
+            document.write(`13. Индекс последней цены большей за 1000 : ${indexLastPriceThatMore1000} <br>`)
+        </script>
+    </body>
+</body>
+
+</html>
