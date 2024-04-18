@@ -11,11 +11,48 @@
     <h1>Задача 9.</h1>
     <p> Морський бій. Користувач вводить кількість клітинок одновимірного масиву та кількість одиночних кораблів.
         Комп’ютер довільно розміщує ці одиночні кораблі у масиві по один у клітинці (якщо у клітинці 0, то клітинка
-        пуста, якщо 1 – то це означає, що там є корабель. Користувач вводить номер клітинки, куди стріляє. Гра
+        пуста, якщо 1 – то це означає, що там є корабель). Користувач вводить номер клітинки, куди стріляє. Гра
         продовжується до тих пір, поки не будуть потоплені усі кораблі.</P>
     <hr>
     <script>
+        //создаем поле с  кораблями (1)
+        function getFullField(userLenght, userQtyShips) {
+            let field = new Array(userLenght).fill(0)
+            let countShips = 0
 
+            while (countShips < userQtyShips) {
+                let genField = Math.floor(Math.random() * userLenght)
+
+                if (field[genField] === 0) {
+                    field[genField] = 1
+                    countShips++
+                }
+            };
+            return field
+        }
+
+        // игра 
+        function gameBattleShip(userQtyShips, battleField, userLenght) {
+            let countKillShip = 0
+            while (countKillShip < userQtyShips) {
+                let userShot = parseInt(prompt(`ведите номер поля от 1 до ${userLenght}`))
+                if (battleField[userShot - 1] === 1) {
+                    countKillShip++
+                    alert(' вы потопили корабль')
+                } else {
+                    alert('промах')
+                }
+            }
+            return countKillShip
+        }
+
+
+        let userLenght = parseInt(prompt('количество клеток поля?'));
+        let userQtyShips = parseInt(prompt('количество кораблей?'))
+        let battleField = getFullField(userLenght, userQtyShips)
+        let game = gameBattleShip(userQtyShips, battleField, userLenght)
+
+        if (game === userQtyShips) alert('вы потопили все вражеские корабли')
     </script>
 </body>
 

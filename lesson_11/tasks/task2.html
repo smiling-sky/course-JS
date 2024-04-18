@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача 2</title>
+</head>
+
+<body>
+    <h1>Задача 2</h1>
+    <p>
+        Дано інформацію про прибуток К магазинів протягом тижня. Знайти :
+    </p>
+    <ol>
+        <li>загальний прибуток кожного масиву за тиждень;</li>
+        <li>загальний прибуток усіх магазинів по дням (загальний прибуток усіх магазинів за понеділок, за вівторок, і
+            т.д.);</li>
+        <li>загальний прибуток за робочі дні</li>
+        <li>загальний прибуток за вихідні дні</li>
+        <li> максимальний прибуток за середу</li>
+        <li>сформувати загальний список (одновимірний масив) зі значенням, які що більші за 200</li>
+        <li>відсортувати кожен тиждень за зростанням</li>
+        <li>відсортувати тижні (рядки) за спаданням максимального елементи у цьому тижні (рядку), тобто при порівнянні
+            рядків потрібно порівнювати максимальні елементи у кожному з цих рядків</li>
+        <li> упорядкувати тижні (рядки) за спаданням суми елементів у рядку (тобто при порівнянні двох рядків треба
+            знайти суму кожного з рядків і порівнювати ці суми, на основі цих сум буде зрозуміло, який з елементів
+            повинен іти раніше).</li>
+    </ol>
+
+    <hr>
+    <script>
+        // ряд = магазин
+        // столбец = день недели
+
+        // генерируем случайное число
+        function getRundomNumber(minValue, maxValue) {
+            return minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
+        }
+
+        // генерируем однономерный массив(дни недели)
+        function generateRandomArray(arrayLenght, minValue, maxValue) {
+            const arr = []
+            for (let i = 0; i < arrayLenght; i++) {
+                const rundomNum = getRundomNumber(minValue, maxValue)
+                arr.push(rundomNum)
+            }
+            return arr
+        }
+
+        // генерируем двумерный массив(кол-во магазинов)
+        function generateRandomTable(rowsNumber, columnNumber, minValue, maxValue) {
+            const table = []
+            for (let r = 0; r < rowsNumber; r++) {
+                const rundomRow = generateRandomArray(columnNumber, minValue, maxValue)
+                table.push(rundomRow)
+            }
+            return table
+        }
+
+        let incomeStores = generateRandomTable(5, 7, 100, 500)
+        document.write(`сгенерированныей массив :  ${incomeStores} <br>`)
+        console.log(incomeStores);
+
+        // загальний прибуток кожного масиву за тиждень;
+        function getStoreIncomePerWeek(incomeStores) {
+            let storeIncomePerWeek = incomeStores.reduce((prevSumIncomeStorePerWeek, incomeStore) => {
+                let sumPerWeek = incomeStore.reduce((prevSumIncome, incomePerDay) => prevSumIncome +
+                    incomePerDay)
+                prevSumIncomeStorePerWeek.push(sumPerWeek)
+                return prevSumIncomeStorePerWeek
+            }, [])
+            return storeIncomePerWeek
+        }
+
+        let arrStoreIncomePerWeek = getStoreIncomePerWeek(incomeStores)
+
+        arrStoreIncomePerWeek.forEach((income, index) => {
+            document.write(`Прибыль ${index +1} магазина состовляет ${income} <br>`)
+        });
+
+
+        //загальний прибуток усіх магазинів по дням (загальний прибуток усіх магазинів за понеділок, за вівторок, і т.д.);
+
+        function getTotalStoresIncomeByDays(incomeStores) {
+            let totalStoresIncomeByDays = []
+            let daysPerWeek = 7
+
+            for (let dayNum = 0; dayNum < daysPerWeek; dayNum++) {
+                let totalSumByDay = 0
+
+                for (let store = 0; store < incomeStores.length; store++) {
+                    totalSumByDay += incomeStores[store][dayNum]
+                }
+
+                totalStoresIncomeByDays.push(totalSumByDay)
+            }
+
+            return totalStoresIncomeByDays
+        }
+        let totalStoresIncomeByDays = getTotalStoresIncomeByDays(incomeStores)
+
+        totalStoresIncomeByDays.forEach((income, index) => {
+            document.write(`Общая прибыль всех магазинов за ${index +1} день, состовляет ${income} <br>`)
+        });
+
+        // загальний прибуток за робочі дні
+        function getTotalStoresIncomeByWorkingDays(incomeStores) {
+            let totalStoresIncomeByWorkingDays = 0
+            let workingDays = 5
+
+            for (let shop = 0; shop < incomeStores.length; shop++) {
+                for (let day = 0; day < workingDays; day++) {
+                    totalStoresIncomeByWorkingDays += incomeStores[shop][day]
+                }
+            }
+
+            return totalStoresIncomeByWorkingDays
+        }
+        let totalStoresIncomeByWorkingDays = getTotalStoresIncomeByWorkingDays(incomeStores)
+        document.write(`Общий доход за рабочие дни состовляет ${totalStoresIncomeByWorkingDays}<br>`)
+
+        // загальний прибуток за вихідні дні
+        function getTotalStoresIncomeByWeekends(incomeStores) {
+            let totalStoresIncomeByWeekends = 0
+
+            for (let shop = 0; shop < incomeStores.length; shop++) {
+                for (let day = 5; day < incomeStores[shop].length; day++) {
+                    totalStoresIncomeByWeekends += incomeStores[shop][day]
+                }
+            }
+
+            return totalStoresIncomeByWeekends
+        }
+
+        let totalStoresIncomeByWeekends = getTotalStoresIncomeByWeekends(incomeStores)
+        document.write(`Общий доход за выходные дни состовляет ${totalStoresIncomeByWeekends}<br>`)
+
+        // максимальний прибуток за середу
+        function getMaxIncomeByDay(incomeStores, day) {
+            let totalMaxIncome = incomeStores.reduce((prevMaxIncome, shop) => {
+                let incomeShopByDay = shop[day - 1]
+                if (prevMaxIncome < incomeShopByDay) prevMaxIncome = incomeShopByDay
+                return prevMaxIncome
+            }, 0)
+
+            return totalMaxIncome
+        }
+
+        const wednesday = 3
+        let maxIncomeByWen = getMaxIncomeByDay(incomeStores, wednesday)
+        document.write(`Максимльный доход за среду ${maxIncomeByWen}<br>`)
+
+        //сформувати загальний список (одновимірний масив) зі значенням, які що більші за 200
+
+        let incomesListValueMore200 = incomeStores.flat().filter(el => el > 200)
+        document.write(`Список доходов больше 200 ${incomesListValueMore200}<br>`)
+
+        // відсортувати кожен тиждень за зростанням
+         incomeStores.forEach(week => 
+            week.sort((income1, income2) => income1 - income2)
+        );
+
+
+        //відсортувати тижні (рядки) за спаданням максимального елементи у цьому тижні (рядку), тобто при порівнянні
+        //рядків потрібно порівнювати максимальні елементи у кожному з цих рядків
+
+        let copyIncomeStoresForMax = JSON.parse(JSON.stringify(incomeStores))
+        copyIncomeStoresForMax.sort((week1, week2) => {
+            let maxIncome1 = week1.reduce((preMax, income, index, baseArr) => income > preMax ? preMax =
+                income :
+                preMax)
+            let maxIncome2 = week2.reduce((preMax, income, index, baseArr) => income > preMax ? preMax =
+                income :
+                preMax)
+            return maxIncome2 - maxIncome1
+        })
+
+        console.log(copyIncomeStoresForMax);
+
+        //упорядкувати тижні (рядки) за спаданням суми елементів у рядку (тобто при порівнянні двох рядків треба
+        //знайти суму кожного з рядків і порівнювати ці суми, на основі цих сум буде зрозуміло, який з елементів
+        //повинен іти раніше)
+
+        let copyIncomeStoresForSum = JSON.parse(JSON.stringify(incomeStores))
+
+        copyIncomeStoresForSum.sort((week1, week2) => {
+            let sumWeek1 = week1.reduce((prevSum, income, index, baseArr) => prevSum + income)
+            let sumWeek2 = week2.reduce((prevSum, income, index, baseArr) => prevSum + income)
+            return sumWeek2 - sumWeek1
+        })
+        console.log(copyIncomeStoresForSum);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача 1</title>
+</head>
+
+<body>
+    <h1>Задача 1.</h1>
+    <p>
+        Знайти суми елементів у вказаній області
+    </p>
+    <ol>
+        <li>номери рядків від 0 до половини, стовпці від 0 до половини</li>
+        <li>номери рядків від 0 до половини, стовпці від половини до кінця</li>
+        <li>номери рядків (від половини до кінця, стовпці від 0 до половини)</li>
+        <li>номери рядків від половини до кінця , стовпці від половини до кінця</li>
+        <li>Суму парних рядків</li>
+        <li>Суму непарних стовпців</li>
+        <li>У парних рядках – непарні стовпці, у непарних – парні.</li>
+    </ol>
+    <hr>
+
+    <script>
+        // генерируем случайное число
+        function getRundomNumber(minValue, maxValue) {
+            return minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
+        }
+
+        // генерируем однономерный массив
+        function generateRandomArray(arrayLenght, minValue, maxValue) {
+            const arr = []
+            for (let i = 0; i < arrayLenght; i++) {
+                const rundomNum = getRundomNumber(minValue, maxValue)
+                arr.push(rundomNum)
+            }
+            return arr
+        }
+
+        // генерируем двумерный массив
+        function generateRandomTable(rowsNumber, columnNumber, minValue, maxValue) {
+            const table = []
+            for (let r = 0; r < rowsNumber; r++) {
+                const rundomRow = generateRandomArray(columnNumber, minValue, maxValue)
+                table.push(rundomRow)
+            }
+            return table
+        }
+
+        let array = generateRandomTable(7, 5, -15, 50)
+        document.write(`сгенерированныей массив :  ${array} <br>`)
+
+
+
+        let halfRows = Math.floor(array.length / 2)
+
+        //номери рядків від 0 до половини, стовпці від 0 до половини
+        let sum1 = 0
+
+        for (let row = 0; row < halfRows; row++) {
+            let halfColumn = Math.floor(array[row].length / 2)
+            for (let column = 0; column < halfColumn; column++) {
+                sum1 += array[row][column]
+            }
+        }
+        document.write(`сумма 1й задачи:  ${sum1}<br>`)
+
+
+        //номери рядків від 0 до половини, стовпці від половини до кінця
+        let sum2 = 0
+
+        for (let row = 0; row < halfRows; row++) {
+            let halfColumn = Math.floor(array[row].length / 2)
+            for (let column = halfColumn; column < array[row].length; column++) {
+                sum2 += array[row][column]
+            }
+        }
+        document.write(`сумма 2й задачи:  ${sum2}<br>`)
+
+        //номери рядків (від половини до кінця, стовпці від 0 до половини)
+        let sum3 = 0
+
+        for (let row = halfRows; row < array.length; row++) {
+            let halfColumn = Math.floor(array[row].length / 2)
+            for (let column = 0; column < halfColumn; column++) {
+                sum3 += array[row][column]
+            }
+        }
+        document.write(`сумма 3й задачи:  ${sum3}<br>`)
+
+        //номери рядків від половини до кінця , стовпці від половини до кінця
+
+        let sum4 = 0
+
+        for (let row = halfRows; row < array.length; row++) {
+            let halfColumn = Math.floor(array[row].length / 2)
+            for (let column = halfColumn; column < array[row].length; column++) {
+                sum4 += array[row][column]
+            }
+        }
+        document.write(`сумма 4й задачи:  ${sum4}<br>`)
+
+
+        // Суму парних рядків
+        let sumEvenRows = 0
+
+        for (let row = 0; row < array.length; row += 2) {
+            for (let column = 0; column < array[row].length; column++) {
+                sumEvenRows += array[row][column]
+            }
+        }
+        document.write(`сумма 5й задачи:  ${sumEvenRows}<br>`)
+
+        //Суму непарних стовпців
+        let sumOddColumn = 0
+        for (let row = 0; row < array.length; row++) {
+            for (let column = 1; column < array[row].length; column += 2) {
+                sumOddColumn += array[row][column]
+            }
+        }
+        document.write(`сумма 6й задачи:  ${sumOddColumn}<br>`)
+
+        //У парних рядках – непарні стовпці, у непарних – парні.
+        let sumEvenRowsOddColumn = 0
+        for (let row = 0; row < array.length; row += 2) {
+            for (let column = 1; column < array[row].length; column += 2) {
+                sumEvenRowsOddColumn += array[row][column]
+            }
+        }
+
+        let sumOddRowsEvenColumn = 0
+        for (let row = 1; row < array.length; row += 2) {
+            for (let column = 0; column < array[row].length; column += 2) {
+                sumOddRowsEvenColumn += array[row][column]
+            }
+        }
+
+        let total = sumEvenRowsOddColumn + sumOddRowsEvenColumn
+
+        document.write(`сумма 7й задачи:  ${total}<br>`)
+    </script>
+</body>
+
+</html>

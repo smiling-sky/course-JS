@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача 3</title>
+</head>
+
+<body>
+    <h1>Задача 3</h1>
+    <p>Морський бій. Випадковим чином на двовимірному полі розміром 6*6 розташовується 5 кораблів. Користувач стріляє
+        вказуючи координати.
+        Гра продовжується поки не потоплено усі кораблі або у користувача не закінчаться снаряди.</p>
+    <hr>
+
+    <script>
+        // создаем и генерируем поле
+        function getBattleField(row = 6, column = 6, shipNumber = 5) {
+            const battleField = []
+            for (let r = 0; r < row; r++) {
+                const rowField = new Array(column).fill(0)
+                battleField.push(rowField)
+            }
+            // расставляем корабли
+            for (let i = 0; i < shipNumber;) {
+                let rundomRow = Math.floor(Math.random() * row)
+                let rundomColumn = Math.floor(Math.random() * column)
+
+                if (battleField[rundomRow][rundomColumn] === 0) {
+                    battleField[rundomRow][rundomColumn] = 1
+                    i++
+                }
+            }
+            return battleField
+        }
+
+        function getGame(shipNumber, userBullets, battleField) {
+            while (shipNumber > 0 && userBullets > 0) {
+                let userRow = parseInt(prompt('Введите строку')) - 1
+                let userCol = parseInt(prompt('Введите столбец')) - 1
+                userBullets--
+                if (battleField[userRow][userCol] === 1) {
+                    shipNumber--
+                    alert('Попадание')
+                } else alert('промах')
+
+            }
+
+            if (shipNumber === 0) return "Победа"
+            else return "Проигрыш"
+        }
+
+
+
+        function play(row, column) {
+
+            let shipNumber = parseInt(prompt('Введите количество кораблей'))
+            let userBullets = parseInt(prompt('Введите количество снарядов'))
+            let battleField = getBattleField(row, column, shipNumber)
+            let game = getGame(shipNumber, userBullets, battleField)
+            return alert(game)
+        }
+
+        play()
+    </script>
+</body>
+
+</html>
