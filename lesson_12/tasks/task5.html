@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача 5</title>
+</head>
+
+<body>
+    <h1>Задача 5.</h1>
+    <p>Дано масив імен. Застосовуючи відповідне сортування та бінарний пошук визначити, чи є у масиві ім’я «Olga» і під
+        яким індексом.</p>
+
+    <hr>
+
+
+    <script>
+        let namesArray = [
+            "Olivia", "Noah", "Emma", "Liam", "Ava", "William", "Sophia", "James", "Isabella",
+            "Oliver", "Charlotte", "Benjamin", "Amelia", "Olga", "Elijah", "Mia", "Lucas", "Harper",
+            "Mason", "Evelyn", "Logan", "Abigail", "Alexander", "Emily"
+        ];
+
+        document.write(`Массив до сортировки : ${namesArray} <br>`)
+
+        // сортировка выбором
+        function getSelectionSort(arr) {
+            let prevLastIndex =arr.length - 2
+            for (let i = 0; i <= prevLastIndex; i++) {
+                let currentMinIndex = i
+                for (let j = i + 1; j < arr.length; j++) {
+                    if (arr[j] < arr[currentMinIndex]) currentMinIndex = j
+                }
+                if (currentMinIndex !== i) {
+                    let temp = arr[i]
+                    arr[i] = arr[currentMinIndex]
+                    arr[currentMinIndex] = temp
+                }
+            }
+        }
+        getSelectionSort(namesArray)
+
+        document.write(`Массив после сортировки : ${namesArray} <br>`)
+
+        // бинарный поиск
+        function includesBinerySearch(arr, searchEl) {
+            let startIndex = 0
+            let endIndex = arr.length - 1
+            let middleIndex
+            while (startIndex <= endIndex) {
+                middleIndex = Math.floor((startIndex + endIndex) / 2)
+                if (arr[middleIndex] === searchEl) return middleIndex
+                if (arr[middleIndex] < searchEl) startIndex = middleIndex + 1
+                if (arr[middleIndex] > searchEl) endIndex = middleIndex - 1
+            }
+            return -1
+        }
+
+
+        let searchIndex = includesBinerySearch(namesArray, 'Olga')
+        
+        if (searchIndex === -1) document.write("Искомого элемента нет в массиве")
+        else document.write(`Индекс искомого элемента : ${searchIndex}`)
+    </script>
+</body>
+
+</html>

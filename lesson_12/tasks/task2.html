@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача 2</title>
+</head>
+
+<body>
+    <h1>Задача 2</h1>
+    <p>
+        Дано масив 30 випадкових цілих чисел. Підрахувати скільки було обмінів та порівнянь чисел під час сортування
+        змішуванням.
+    </p>
+
+    <hr>
+    <script>
+        function getArr(minNum = -15, maxNum = 15, amount = 30) {
+            let arr = []
+            let generateEl
+            for (let i = 0; i < amount; i++) {
+                generateEl = minNum + Math.floor(Math.random() * (maxNum - minNum + 1))
+                arr.push(generateEl)
+            }
+            return arr
+        }
+
+
+        function getSwap(arr, ind) {
+            let swap = arr[ind - 1]
+            arr[ind - 1] = arr[ind]
+            arr[ind] = swap
+        }
+
+         let arr = getArr()
+
+        // сортируем массив
+        function getCockSort(arr, getSwap) {
+            // количество сравнений
+            let countComprasion = 0
+            // количество обменов
+            let countSwap = 0
+
+            let leftIndex = 0
+            let rightIndex = arr.length - 1
+            while (leftIndex < rightIndex) {
+                let changed = false
+
+                for (let ind = leftIndex + 1; ind <= rightIndex; ind++) {
+                    if (arr[ind - 1] > arr[ind]) {
+                        getSwap(arr, ind)
+                        changed = true
+                        countSwap++
+                    }
+                    countComprasion++
+                }
+                rightIndex--
+                if (!changed) break
+
+                changed = false
+                for (let ind = rightIndex; ind > leftIndex; ind--) {
+                    if (arr[ind - 1] > arr[ind]) {
+                        getSwap(arr, ind)
+                        countSwap++
+                        changed = true
+                    }
+                    countComprasion++
+                }
+                leftIndex++
+                if (!changed) break
+            }
+
+            console.log(`сравнение ${countComprasion}`);
+            console.log(`обмен ${countSwap}`);
+        }
+        getCockSort(arr, getSwap)
+
+        console.log(arr);
+
+        // не  уверен что правильно написана функция getSwap, поскольку я ничего не возвращаю. но все работает)
+    </script>
+</body>
+
+</html>
