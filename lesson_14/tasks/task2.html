@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача 2</title>
+</head>
+
+<body>
+    <h1>Задача 2</h1>
+    <p>
+        Розробити функцію, у яку передають об’єкт (день, місяць, рік).
+        Визначити, який буде рік через N місяців.
+    </p>
+
+    <hr>
+    <script>
+        let data = {
+            day: 1,
+            month: 1,
+            year: 2000,
+        }
+
+        function getShiftN() {
+            return parseInt(prompt('Введите количество месяцев', 10))
+        }
+
+        function getCountYear({
+            month,
+            year
+        }, shiftN) {
+            const monthOfYear = 12
+            let newMonth = month + shiftN
+            let newYear = year + Math.floor((newMonth - 1) / monthOfYear)
+            return newYear
+        }
+
+        function getResult(data) {
+            let shiftN = getShiftN()
+            let resYear = getCountYear(data, shiftN)
+            document.write(`При ${data.month} месяце  ${data.year} года, через ${shiftN} месяцев будет, ${resYear} год`)
+            return resYear
+        }
+        let result = getResult(data)
+    </script>
+</body>
+
+</html>

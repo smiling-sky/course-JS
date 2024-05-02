@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача 1</title>
+</head>
+
+<body>
+    <h1>Задача 1.</h1>
+    <p>
+        Описати масив об’єктів – сайтів розроблених компанією з такими властивостями
+    </p>
+    <div>
+        <p>Властивості</p>
+        <ul>
+            <li>назва компанії на час розробки (назву періодично змінюють)</li>
+            <li>власник компанії</li>
+            <li>споснсори (масив спонсорів)
+                <ul>
+                    <li>
+                        прізвище спонсора
+                    </li>
+                    <li>
+                        ім’я спонсора
+                    </li>
+                    <li>
+                        сума вкладень спонсора
+                    </li>
+                </ul>
+            </li>
+            <li>
+                рік випуску
+            </li>
+            <li>вартість сайту</li>
+        </ul>
+    </div>
+    <div>
+        <p>
+            Знайти:
+        </p>
+        <ol>
+            <li>загальну вартість усіх сайтів</li>
+            <li>кількість сайтів, що було зроблено між 2000 та 2009 рр.</li>
+            <li>кількість сайтів, де сума спонсорських вкладень була більшою за 100000</li>
+            <li>створити загальний список усіх спонсорів (поки можуть повторюватись, просто зібрати усі у масив)</li>
+            <li>знайти рік, коли прибуток був найбільшим</li>
+            <li>упорядкувати список за спаданням прибутку</li>
+            <li>Створити 2 окремих списки з копіями об’єктів, що містять сайти з вартість до 10000 і більше 10000</li>
+        </ol>
+    </div>
+    <hr>
+
+    <script>
+        const websites = [{
+                companyName: "ABC Web Solutions",
+                owner: "John Doe",
+                sponsors: [{
+                        lastName: "Smith",
+                        firstName: "Alice",
+                        investmentAmount: 50000
+                    },
+                    {
+                        lastName: "Johnson",
+                        firstName: "Bob",
+                        investmentAmount: 70000
+                    }
+                ],
+                yearReleased: 2008,
+                siteCost: 10000
+            },
+            {
+                companyName: "XYZ Design Co.",
+                owner: "Jane Smith",
+                sponsors: [{
+                    lastName: "Brown",
+                    firstName: "Charlie",
+                    investmentAmount: 80000
+                }],
+                yearReleased: 2009,
+                siteCost: 12000
+            },
+            {
+                companyName: "WebTech Innovations",
+                owner: "Emily Davis",
+                sponsors: [{
+                        lastName: "Wilson",
+                        firstName: "David",
+                        investmentAmount: 80000
+                    },
+                    {
+                        lastName: "Martinez",
+                        firstName: "Emma",
+                        investmentAmount: 60000
+                    }
+                ],
+                yearReleased: 2010,
+                siteCost: 15000
+            },
+            {
+                companyName: "Creative Solutions Ltd.",
+                owner: "Michael Johnson",
+                sponsors: [{
+                    lastName: "Garcia",
+                    firstName: "James",
+                    investmentAmount: 130000
+                }],
+                yearReleased: 2015,
+                siteCost: 8500
+            },
+            {
+                companyName: "Innovate Web Services",
+                owner: "Sarah Wilson",
+                sponsors: [{
+                        lastName: "Anderson",
+                        firstName: "Olivia",
+                        investmentAmount: 13000
+                    },
+                    {
+                        lastName: "Lee",
+                        firstName: "Sophia",
+                        investmentAmount: 85000
+                    }
+                ],
+                yearReleased: 2001,
+                siteCost: 9100
+            }
+        ];
+
+
+        // 1.загальну вартість усіх сайтів
+        let totalCost = websites.reduce((prevCost, site) => prevCost + site.siteCost, 0)
+        document.write(`1. Общая стоимость всех сайтов = ${totalCost} <br>`)
+
+        // 2.кількість сайтів, що було зроблено між 2000 та 2009 рр
+        let numSitesBetweenYears = websites.reduce((prevCount, site) => {
+            if (site.yearReleased > 2000 && site.yearReleased < 2009) prevCount++
+            else prevCount
+            return prevCount
+        }, 0)
+
+        document.write(
+            `2.Количество сайтов, что были сделаны в период между 2000 и 2009гг = ${numSitesBetweenYears} <br>`)
+
+        //3.кількість сайтів, де сума спонсорських вкладень була більшою за 100000
+        let numSitesGrateThan100000 = websites.reduce((prevCount, site) => {
+            // строка ниже будет считаться правильной записью? строка рабочая
+            //if (site.sponsors.reduce((prevSumSponsor, sponsor) => prevSumSponsor + sponsor.investmentAmount,0) > 100000) prevCount++
+            let sumSponsors = site.sponsors.reduce((prevSumSponsor, sponsor) =>
+                prevSumSponsor + sponsor.investmentAmount, 0)
+            if (sumSponsors > 100000) prevCount++
+            else prevCount
+            return prevCount
+        }, 0)
+
+        document.write(
+            `3.Количество сайтов где спонсорские вложения больше за 100000 = ${numSitesGrateThan100000} <br>`)
+
+        // 4.створити загальний список усіх спонсорів (поки можуть повторюватись, просто зібрати усі у масив)
+        let sponsorsList = websites.reduce((prevList, site) => {
+            let sponsor = site.sponsors.reduce((prevArr, el) => [...prevArr, `${el.firstName} ${el.lastName}`],
+                [])
+            return [...prevList, ...sponsor]
+        }, [])
+
+        document.write('4.Список всех спонсоров: <br>')
+        for (const name of sponsorsList) {
+            document.write(`${name} <br>`)
+        }
+
+        //5.знайти рік, коли прибуток був найбільшим
+        let yearSiteMaxCost = websites.reduce((prevSiteMaxCost, site) => site.siteCost > prevSiteMaxCost.siteCost ? site :
+            prevSiteMaxCost).yearReleased
+
+        console.log(yearSiteMaxCost);
+
+        document.write(
+            `5.Год в который была максимальная прибыль = ${yearSiteMaxCost} <br>`)
+
+        //6.упорядкувати список за спаданням прибутку
+        websites.sort((site1, site2) => site2.siteCost - site1.siteCost)
+        console.log(websites)
+
+        //7.Створити 2 окремих списки з копіями об’єктів, що містять сайти з вартість до 10000 і більше 10000
+        // let costLessThen10000 = []
+        // let costMoreThen10000 = []
+
+        // for (const site of websites) {
+        //     if (site.siteCost >= 10000) costMoreThen10000.push(site)
+        //     else costLessThen10000.push(site)
+        // }
+
+        let costLessThen10000 = websites.filter((site) => site.siteCost < 10000)
+        let costMoreThen10000 = websites.filter((site) => site.siteCost >= 10000)
+
+        console.log(costLessThen10000);
+        console.log(costMoreThen10000);
+    </script>
+</body>
+
+</html>

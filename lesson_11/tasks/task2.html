@@ -157,7 +157,7 @@
         document.write(`Список доходов больше 200 ${incomesListValueMore200}<br>`)
 
         // відсортувати кожен тиждень за зростанням
-         incomeStores.forEach(week => 
+        incomeStores.forEach(week =>
             week.sort((income1, income2) => income1 - income2)
         );
 
@@ -167,11 +167,9 @@
 
         let copyIncomeStoresForMax = JSON.parse(JSON.stringify(incomeStores))
         copyIncomeStoresForMax.sort((week1, week2) => {
-            let maxIncome1 = week1.reduce((preMax, income, index, baseArr) => income > preMax ? preMax =
-                income :
+            let maxIncome1 = week1.reduce((preMax, income, index, baseArr) => income > preMax ? income :
                 preMax)
-            let maxIncome2 = week2.reduce((preMax, income, index, baseArr) => income > preMax ? preMax =
-                income :
+            let maxIncome2 = week2.reduce((preMax, income, index, baseArr) => income > preMax ? income :
                 preMax)
             return maxIncome2 - maxIncome1
         })

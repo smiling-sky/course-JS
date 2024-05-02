@@ -83,7 +83,7 @@
 
 
         // Сформувати новий масив, що міститиме значення цін у відсотках стосовно максимального
-        let maxPrice = pricesList.reduce((prevPrice, price) => prevPrice > price ? prevPrice : prevPrice = price)
+        let maxPrice = pricesList.reduce((prevPrice, price) => prevPrice > price ? prevPrice : price)
 
         let prcForMaxPrice = pricesList.map(price => price / maxPrice * 100)
         document.write(
