@@ -435,7 +435,7 @@
             "info": null,
             "show_in_site": null
         }]
-
+        console.log(dataList);
         //Загальну вартість (нові ціни - price)
         let totalCost = dataList.reduce((prevSum, item) => prevSum + item.price, 0)
         document.write(`1. Общая стоимость товаров ${totalCost} <br>`)
@@ -452,13 +452,19 @@
         //сформувати новий список об”єктів тільки доступних для продажу товарів, які міститимуть
         // тільки ідентифікатор товару (id), нову ціну (price), стару ціну (old_price), та ціну у
         //доларах (usd_price)
-        let newList = dataList.map((el) => ({
-            id: el.id,
-            price: el.price,
-            old_price: el.old_price,
-            usd_price: el.usd_price,
-        }))
-        console.log(newList);
+
+        let newList = dataList.reduce((prevList, el) => {
+            if (el.sell_status === "available") {
+                prevList.push({
+                    id: el.id,
+                    price: el.price,
+                    old_price: el.old_price,
+                    usd_price: el.usd_price,
+                })
+            } else prevList
+            return prevList
+        }, [])
+        console.log(newList)
 
         document.write('3. и 4. Результат в консоли <br>')
     </script>

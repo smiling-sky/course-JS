@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 3</title>
+  </head>
+
+  <body>
+    <h1>Задача 3</h1>
+    <p>Розробити клас MultChecker для перевірки таблиці множення</p>
+    <ul>
+      Поля
+      <li>
+        Число, яке перевіряємо (наприклад, перевірка частини таблиці множення на
+        7)
+      </li>
+      <li>Кількість правильних відповідей</li>
+      <li>Кількість неправильних відповідей</li>
+    </ul>
+
+    <ul>
+      Методи
+      <li>
+        Генерування прикладу (метод випадковим чином визначає друге число, перше
+        число фіксоване)
+      </li>
+      <li>Перевірка правильності вказаної відповіді</li>
+      <li>render - виведення інформації про тестування на екран</li>
+    </ul>
+    <hr />
+    <script>
+      let firstNumber = parseInt(prompt("введие проверяемое число"));
+
+      class MultChecker {
+        constructor(checkNumber) {
+          this.checkNumber = checkNumber;
+          this.correctAnswer = 0;
+          this.wrongAnswer = 0;
+        }
+        getRandomExample() {
+          let numbersArr = [];
+          let randomNum = Math.floor(Math.random() * (10 - 0 + 1));
+          numbersArr.push(randomNum);
+          let questionToCheck = parseInt(
+            prompt(`ввеите ответ на : ${this.checkNumber} * ${randomNum}`)
+          );
+          numbersArr.push(questionToCheck);
+          return numbersArr;
+        }
+
+        checker() {
+          let numbersArr = this.getRandomExample();
+          if (this.checkNumber * numbersArr[0] === numbersArr[1])
+            this.correctAnswer += 1;
+          else this.wrongAnswer += 1;
+        }
+
+        render() {
+          document.write(
+            `Правильных ответов: ${this.correctAnswer};<br> Неправильных ответов : ${this.wrongAnswer}. `
+          );
+        }
+      }
+
+      let obj1 = new MultChecker(firstNumber);
+      let request;
+
+      do {
+        obj1.checker();
+        request = confirm("желаете продолжить?");
+      } while (request);
+      obj1.render();
+    </script>
+  </body>
+</html>

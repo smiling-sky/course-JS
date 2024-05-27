@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 0</title>
+  </head>
+
+  <body>
+    <h1>Задача 0.</h1>
+    <p>
+      Дано два об’єкта. Обидва містять масив цілих чисел. При цьому у одному з
+      них є функція знаходження суми, а у іншому – функція для знаходження
+      добутку тих, які знаходяться між заданими мінімальним і максимальних
+      значенням. Використати обидва методи стосовно обидвох об’єктів
+      (використати call, apply)
+    </p>
+    <hr />
+
+    <script>
+      let obj1 = {
+        arrNums: [1, 5, 3, 6, 15, 9, 24, 3, 6],
+        getSumNum: function () {
+          return this.arrNums.reduce((prevsum, num) => prevsum + num);
+        },
+      };
+      let obj2 = {
+        arrNums: [1, 4, 9, 16, 7, 8, 22, 21, 18],
+        getMultiplyBetweenNumbers: function (minNum, maxNum) {
+          return this.arrNums.reduce(
+            (prevMultiply, num) =>
+              num >= minNum && num <= maxNum
+                ? prevMultiply * num
+                : prevMultiply,
+            1
+          );
+        },
+      };
+
+      let sumObj1 = obj1.getSumNum();
+      let sumObj2 = obj1.getSumNum.call(obj2);
+      let multiplyObj1 = obj2.getMultiplyBetweenNumbers.apply(obj1, [1, 7]);
+      let multiplyObj2 = obj2.getMultiplyBetweenNumbers(1, 7);
+
+      document.write(`
+      <p>Сумма чисел obj1 = ${sumObj1};</p>
+      <p>Сумма чисел obj2 = ${sumObj2};</p>
+      <p>Произведение чисел obj1 = ${multiplyObj1};</p>
+      <p>Произведение чисел obj2 = ${multiplyObj2};</p>
+      `);
+    </script>
+  </body>
+</html>

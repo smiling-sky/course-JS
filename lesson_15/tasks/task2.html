@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 2</title>
+  </head>
+
+  <body>
+    <h1>Задача 2</h1>
+    <p>Створити об’єкт «Авто».</p>
+    <ul>
+      Поля(властивості)
+      <li>Марка</li>
+      <li>Розмір бака</li>
+      <li>Кількість наявних літрів</li>
+      <li>Кількість місць</li>
+      <li>Кількість пасажирів</li>
+    </ul>
+
+    <ul>
+      Методи (дії)
+
+      <li>Заправка на вказану кількість літрів</li>
+      <li>Виведення кількості пасажирів</li>
+      <li>Додавання пасажирів</li>
+      <li>Висадка пасажирів</li>
+    </ul>
+    <hr />
+    <script>
+      let auto = {
+        model: "audi",
+        volumeTank: 90,
+        availableLitresFuel: 20,
+        numberSeats: 12,
+        numberPassenger: 3,
+        //Заправка на вказану кількість літрів
+        refueling: function (litres) {
+          if (this.availableLitresFuel + litres > this.volumeTank)
+            throw new Error(
+              "Количество топлива привешает обьем топливного бака"
+            );
+          this.availableLitresFuel += litres;
+        },
+        //Виведення кількості пасажирів
+        showNumberPassenger: function () {
+          document.write(
+            `Количество пассажиров в авто : ${this.numberPassenger}`
+          );
+        },
+        //Додавання пасажирів
+        increasePassenger: function (val) {
+          if (val < 0 || this.numberPassenger + val > this.numberSeats)
+            throw new Error("нельзя добавить отрицательное количество или больше чем есть мест в авто");
+          this.numberPassenger += val;
+        },
+        //Висадка пасажирів
+        reducePassengers: function (val) {
+          if (val > this.numberPassenger)
+            throw new Error("нельзя вывывесть больше пассажиров чем их есть");
+          this.numberPassenger -= val;
+        },
+      };
+      auto.reducePassengers(3);
+      auto.increasePassenger(12);
+      console.log(auto);
+    </script>
+  </body>
+</html>

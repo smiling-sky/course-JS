@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 1</title>
+  </head>
+
+  <body>
+    <h1>Задача 1.</h1>
+    <p>
+      Створити об’єкт «Тир». У масиві зберігаються 1, якщо у цьому квадраті є
+      заєць і 0 в іншому випадку.
+    </p>
+    <ul>
+      Поля(властивості):
+      <li>Масив, у якому зберігається поле з зайцями;</li>
+    </ul>
+    <ul>
+      Методи (дії):
+      <li>Метод пострілу (задається позиція пострілу)</li>
+      <li>Виведення ігрового поля</li>
+    </ul>
+
+    <hr />
+
+    <script>
+      let shootingGallery = {
+        fieldWithHares: [1, 0, 1, 0, 0],
+        userShooting: [0, 0, 0, 0, 0],
+        countShoots: 0,
+        shooting: function () {
+          for (let shoot = 0; shoot < 3; shoot++) {
+            let userPosition = parseInt(
+              prompt("Введите номер мешени от 1 до 5, \n у вас 3 выстрела", 1)
+            );
+            //проверяю попал ли пользователь и не стрелял ли он в эту мишень ранее
+            if (
+              this.fieldWithHares[userPosition - 1] === 1 &&
+              this.fieldWithHares[userPosition - 1] !==
+                this.userShooting[userPosition - 1]
+            ) {
+              alert("попал");
+              this.countShoots += 1;
+            } else alert(" мимо");
+            // фиксирую цель пользователя
+            this.userShooting[userPosition - 1] = 1;
+            // остонавливаю попытки если он выбил все мишени до окончания попыток
+            if (this.countShoots === 2) break;
+          }
+        },
+        getBattles: function () {
+          this.shooting();
+          if (this.countShoots === 2) alert("Победа");
+          else alert("Проигрыш");
+
+          document.write(`
+            Поле тира : ${this.fieldWithHares}; <br>
+           Cбитые цели игроком : ${this.userShooting} <br> 
+            `);
+        },
+      };
+
+      shootingGallery.getBattles();
+      console.log(shootingGallery.userShooting);
+      console.log(shootingGallery.countShoots);
+    </script>
+  </body>
+</html>

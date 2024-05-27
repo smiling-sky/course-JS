@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 4</title>
+  </head>
+
+  <body>
+    <h1>Задача 4</h1>
+    <p>Розробити клас Baner</p>
+    <ol>
+      Поля
+      <li>Масив об’єктів ( графічних зображень та посилань на сайти)</li>
+    </ol>
+    <ol>
+      методи
+      <li>
+        Метод випадкового вибору об’єкта (графічного зображення та посилання)
+      </li>
+      <li>Метод виведення випадкового банера</li>
+    </ol>
+    <hr />
+
+    <a href="" style="display: inline-block; width: 250px; height: 250px"
+      ><img src="" alt="" style="max-width: 100%; aspect-ratio: 1/1"
+    /></a>
+
+    <script>
+      class ObjectBanner {
+        constructor(img, link) {
+          this.img = img;
+          this.link = link;
+        }
+      }
+      class Baner {
+        constructor(arrObjects) {
+          this.arrObjects = arrObjects;
+        }
+        choiceObject() {
+          let rundomInd = Math.floor(Math.random() * this.arrObjects.length);
+          return this.arrObjects[rundomInd];
+        }
+        // setBanner() {
+        //   let randomBaner = this.choiceObject();
+        //   document.write(` <a href="${randomBaner.link}" style="display: inline-block; width: 500px; height: 500px;"><img src="${randomBaner.img}" alt="" style="max-width: 100%; aspect-ratio: 1/1;"/></a>`)
+        // }
+        toString() {
+          let randomBaner = this.choiceObject();
+          return ` <a href="${randomBaner.link}" style="display: inline-block; width: 500px; height: 500px;"><img src="${randomBaner.img}" alt="" style="max-width: 100%; aspect-ratio: 1/1;"/></a>`;
+        }
+      }
+
+
+      
+      let arrObjects = [
+        new ObjectBanner(
+          `https://images.unsplash.com/photo-1691311797392-ce6006bd6aa6?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`,
+          `https://unsplash.com/t/wallpapers`
+        ),
+        new ObjectBanner(
+          `https://images.unsplash.com/photo-1713671164603-5529b29fa031?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`,
+          `https://unsplash.com/t/wallpapers`
+        ),
+        new ObjectBanner(
+          `https://images.unsplash.com/photo-1714933110718-f2ec1d199919?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`,
+          `https://unsplash.com/t/wallpapers`
+        ),
+        new ObjectBanner(
+          `https://images.unsplash.com/photo-1716668595976-604426108db1?q=80&w=2128&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`,
+          `https://unsplash.com/t/wallpapers`
+        ),
+      ];
+
+      let baner = new Baner(arrObjects);
+      document.write(baner);
+    </script>
+  </body>
+</html>

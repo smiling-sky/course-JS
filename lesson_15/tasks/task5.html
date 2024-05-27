@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Задача 5</title>
+  </head>
+
+  <body>
+    <h1>Задача 5.</h1>
+    <p>Розробити клас «Керівник танців»</p>
+    <ol>
+      Поля
+      <li>Масив імен хлопців</li>
+      <li>Масив імен дівчат</li>
+    </ol>
+    <ol>
+      Методи
+      <li>Метод випадкового вибору імені хлопця</li>
+      <li>Метод випадкового вибору імені дівчини</li>
+      <li>Метод виведення пари для танців</li>
+      <li>
+        Метод run , який ініціює через кожні 5 секунд виведення нової пари для
+        танців
+      </li>
+    </ol>
+    <hr />
+
+    <script>
+      class DanceTeacher {
+        constructor(namesBoys, namesGirls) {
+          this.namesBoys = namesBoys;
+          this.namesGirls = namesGirls;
+        }
+        getRundomNameBoy() {
+          let rundomName = Math.floor(Math.random() * this.namesBoys.length); // индекс начинается с 0, а длина с 1, поэтому еденицу добавлять не нужно
+          return this.namesBoys[rundomName];
+        }
+        getRundomNameGirl() {
+          let rundomName = Math.floor(Math.random() * this.namesGirls.length); // индекс начинается с 0, а длина с 1, поэтому еденицу добавлять не нужно
+          return this.namesGirls[rundomName];
+        }
+        setDanceCouple() {
+          document.write(
+            `пара для для танцев: мальчик - ${this.getRundomNameBoy()}, девочка - ${this.getRundomNameGirl()} <br>`
+          );
+        }
+        run() {
+          this.setDanceCouple();
+          setTimeout(() => this.run(), 5000);
+        }
+      }
+
+      let arrNamesBoys = [
+        "Ivan",
+        "Andrei",
+        "Maxim",
+        "Alexander",
+        "Aleh",
+        "Artem",
+      ];
+      let arrNamesGirl = ["Tatiana", "Yulia", "Alexandra", "Masha"];
+
+      let coupleDance = new DanceTeacher(arrNamesBoys, arrNamesGirl);
+      coupleDance.run();
+
+      console.log(coupleDance);
+
+      //  можете обьяснить почему эта строчка setTimeout(() => this.run(), 5000);
+      // сносит тег body?
+      //=============================
+    </script>
+  </body>
+</html>

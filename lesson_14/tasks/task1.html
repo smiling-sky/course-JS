@@ -170,7 +170,8 @@
         }
 
         //5.знайти рік, коли прибуток був найбільшим
-        let yearSiteMaxCost = websites.reduce((prevSiteMaxCost, site) => site.siteCost > prevSiteMaxCost.siteCost ? site :
+        let yearSiteMaxCost = websites.reduce((prevSiteMaxCost, site) => site.siteCost > prevSiteMaxCost.siteCost ?
+            site :
             prevSiteMaxCost).yearReleased
 
         console.log(yearSiteMaxCost);
@@ -183,17 +184,13 @@
         console.log(websites)
 
         //7.Створити 2 окремих списки з копіями об’єктів, що містять сайти з вартість до 10000 і більше 10000
-        // let costLessThen10000 = []
-        // let costMoreThen10000 = []
+        let costLessThen10000 = []
+        let costMoreThen10000 = []
 
-        // for (const site of websites) {
-        //     if (site.siteCost >= 10000) costMoreThen10000.push(site)
-        //     else costLessThen10000.push(site)
-        // }
-
-        let costLessThen10000 = websites.filter((site) => site.siteCost < 10000)
-        let costMoreThen10000 = websites.filter((site) => site.siteCost >= 10000)
-
+        for (const site of websites) {
+            if (site.siteCost >= 10000) costMoreThen10000.push(JSON.parse(JSON.stringify(site)))
+            else costLessThen10000.push(JSON.parse(JSON.stringify(site)))
+        }
         console.log(costLessThen10000);
         console.log(costMoreThen10000);
     </script>
